@@ -482,3 +482,16 @@ html[data-polices="qyklo"] h1, html[data-polices="qyklo"] h2, html[data-polices=
 a.method { color: inherit; text-decoration: none; transition: border-color var(--m-150) ease; }
 @media (hover: hover) { a.method:hover { border-color: var(--accent); } }
 .impact img { width: 40px; height: 40px; }
+
+/* Bouton de langue (FR | EN) */
+.nav a.lang { font: 500 var(--t-2)/1 var(--mono); letter-spacing: .04em; color: var(--accent-text); border: 1px solid var(--line); margin-left: var(--s-1); }
+.nav a.lang:hover { border-color: var(--accent); background: transparent; }
+@media (max-width: 767.98px) { .nav a.lang { margin-left: 0; } }
+.nav a.lang { min-width: var(--hit); justify-content: center; }
+.nav .btn.in .ico { display: none; width: 18px; height: 18px; }
+@media (max-width: 767.98px) {
+  .nav { gap: 0; }
+  .nav .btn.in { width: var(--hit); padding: 0; margin-left: var(--s-1); }
+  .nav .btn.in .ico { display: block; }
+  .nav .btn.in .lbl { display: none; }
+}

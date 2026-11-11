@@ -189,41 +189,246 @@ const PAGES = [
   }
 ];
 
+/* Version anglaise : mêmes clés que PAGES, textes traduits. Termes normés gardés (8D, SCAR, Cpk, CAPA…). */
+const EN = {
+  spc: {
+    nom: 'SPC', domaine: 'Production · SPC',
+    titre: 'SPC · statistical process control',
+    description: 'SPC application: control charts and capability from machine measurements, reports in a few clicks, operator screen with alert and line stop.',
+    h1: 'Spot the drift before it reaches the customer',
+    lede: 'Machine measurements become control charts, capability indices and reports, with no copy-pasting. At the workstation, the operator sees the drift and production stops by itself when it has to.',
+    meta: ['Control charts', 'Cp · Cpk · Pp · Ppk', 'Keyence IM'],
+    chartLabel: 'Control chart: measurements stay within limits, then drift; the last point exceeds the tolerance and triggers an alert.',
+    probleme: 'Before: no monitoring, and reports built by hand',
+    avant: ['Export the measurements from the machine by hand', 'Paste them into an Excel file set up in German', 'Take a screenshot of the result', 'Repeat for every dimension to monitor', 'Paste everything into a Word report, with images of different sizes'],
+    avantNum: ['1 to 2 h', 'per report, and no monitoring during production'],
+    apres: ['The app reads the measuring machine exports directly', 'Charts, capability and detection rules are computed for every dimension', 'The report, internal or customer, is generated and printed to PDF', 'At the workstation, the operator follows every part in real time'],
+    apresNum: ['A few clicks', 'for a clean report, and real monitoring of the milling machine'],
+    impact: 'Process monitoring statistics made it possible to trace a milling defect back to its root cause. With the tool in place, the drift would have been visible long before it reached the customer.',
+    appTitre: 'Two screens, two jobs',
+    blocs: [
+      ['Supervision · quality and managers', 'Analyse a product, a dimension, a period or selected work orders.',
+        ['X/MR, X̄/R and three-way charts by work order', 'Cp, Cpk, Pp, Ppk capability, within and overall standard deviations', 'Detection of out-of-limit points, runs and trends', 'Frozen, versioned reference limits', 'Internal and customer reports ready to print']],
+      ['Workstation · operator on the shop floor', 'A screen readable from a distance, refreshed every 30 seconds.',
+        ['Last part measured, position within the tolerance', 'Moving average and acceptance zone to see the drift', 'Technician alert when the average leaves the zone', 'Line stop after 3 consecutive non-conforming parts', 'Restart after 5 conforming parts and a named release']]
+    ],
+    vues: [
+      ['Supervision.', 'Capability, detection rules and individual values chart over three work orders.', 'Supervision: capability indicators and individual values chart over three work orders'],
+      ['Operator workstation.', 'The moving average leaves the zone: technician alert, then line stop.', 'Operator workstation: technician alert, line stop banner and last parts chart'],
+      ['Line stop.', 'Impossible to miss from the other end of the shop floor.', 'Full-screen line stop with the three out-of-tolerance parts'],
+      ['X̄/R chart.', 'Averages and ranges by subgroup.', 'X-bar / R chart by subgroup'],
+      ['Report.', 'Internal or customer version, ready to print to PDF.', 'Preview of the statistical process control report, ready to print']
+    ],
+    capot: [
+      ['A single HTML file', 'Opens in Edge or Chrome. Nothing to install, no server.'],
+      ['Direct export reading', 'The Keyence machine CSV files are reread automatically.'],
+      ['Settings by product', 'Dimensions, tolerances and alert thresholds in a shared file.'],
+      ['Reaction log', 'Every alert and every release is recorded.'],
+      ['Light and dark', 'The workstation stays dark for the shop floor, supervision as you like.'],
+      ['Shared foundation', 'Same theme and same storage as the other applications.']
+    ]
+  },
+  scar: {
+    nom: 'SCAR and 8D', domaine: 'Suppliers · SCAR and 8D',
+    titre: 'SCAR and 8D · supplier complaints',
+    description: 'SCAR application: supplier complaints with an English PDF, step-by-step 8D follow-up, PPM and supplier rating computed automatically.',
+    h1: 'From supplier defect to closed 8D, with no re-entry',
+    lede: 'A supplier complaint is created in three minutes, sent with its PDF and followed step by step until the 8D is closed. Supplier indicators compute themselves.',
+    meta: ['SCAR', '8D', 'PPM', 'Supplier rating'],
+    chartLabel: 'The eight steps of a supplier 8D, from D1 to D8, are validated one after another until closure.',
+    probleme: 'Before: every complaint cost data-entry time',
+    avant: ['10 min to write a SCAR', '2 min to send it to the supplier', '10 min to close each 8D step', 'Reminders to send by hand', 'Over an hour to compute the indicators'],
+    avantNum: ['Over 1 h', 'just for the supplier indicators'],
+    apres: ['3 min to write a SCAR', 'A few seconds to send it, PDF included', '1 to 2 min per 8D step, properly recorded', 'Due dates and delays visible at a glance'],
+    apresNum: ['Instant', 'indicators are always up to date'],
+    appTitre: 'From complaint to management review',
+    blocs: [
+      ['Complaints and 8D', 'The whole life cycle of a SCAR in one place.',
+        ['Guided SCAR creation, English PDF for the supplier', 'Step-by-step 8D follow-up, from D3 to closure', 'D3, D5 and closure due dates, delays highlighted', 'Effectiveness check after closure', 'Audit mode for a customer or certification presentation']],
+      ['Suppliers and indicators', 'Figures are computed from goods receipts.',
+        ['PPM per supplier over a rolling 12 months', 'Import of the SAP goods receipt export', 'A, B, C supplier score and ranking', 'Average 8D closure time', 'Management review exported to PDF']]
+    ],
+    vues: [
+      ['Home.', 'Open SCARs, overdue 8Ds, closure time and PPM at a glance.', 'SCAR home: key indicators and SCARs issued per month'],
+      ['8D pipeline.', 'Each SCAR sorted by its current step.', '8D pipeline by step: containment, corrective actions, implementation, prevention'],
+      ['SCAR detail.', '8D progress, due dates and defect record.', 'SCAR detail with 8D progress and due dates'],
+      ['Suppliers.', 'PPM, number of SCARs and score per supplier.', 'Supplier list with PPM, SCARs and score'],
+      ['Dashboard.', 'The management review indicators.', 'Supplier quality dashboard with indicators and monthly charts']
+    ],
+    capot: [
+      ['A single HTML file', 'Opens in Edge or Chrome. Nothing to install, no server.'],
+      ['Shared folder', 'One SCAR per file: several people can work at the same time.'],
+      ['Nothing gets overwritten', 'If a colleague edited the same SCAR, the app detects it and asks what to keep.'],
+      ['PDF and Excel', 'SCAR as PDF, register and management review exportable.'],
+      ['Recycle bin', 'Every deletion keeps a recoverable copy.'],
+      ['Shared foundation', 'Same theme and same storage as the other applications.']
+    ]
+  },
+  oqc: {
+    nom: 'OQC', domaine: 'Shipping · OQC',
+    titre: 'OQC · outgoing quality control',
+    description: 'OQC application: final lot inspection to ISO 2859-1, automatic sampling plan, rejection rate and non-conformities.',
+    h1: 'The right sample, the right verdict, for every lot',
+    lede: 'Before shipping, the app gives the sample size and acceptance criteria according to ISO 2859-1, records the inspection and keeps the rejection rate up to date.',
+    meta: ['ISO 2859-1', 'Rejection rate', 'Non-conformities'],
+    chartLabel: 'A lot of 150 parts: 20 parts are sampled according to ISO 2859-1, one defect is found, the lot is rejected.',
+    probleme: 'Before: indicators computed by hand',
+    avant: ['Final inspection indicators computed by hand', 'A presentation to rebuild every time'],
+    avantNum: ['A few minutes', 'for every indicator update'],
+    apres: ['The sampling plan is computed as soon as the lot is entered', 'The verdict follows from the number of defects', 'Rejection rate and indicators updated after every inspection', 'Clean non-conformity reports, ready to share'],
+    apresNum: ['Automatic', 'and a professional presentation'],
+    appTitre: 'From inspected lot to handled non-conformity',
+    blocs: [
+      ['Lot inspection', 'Data entry follows the inspection itself.',
+        ['ISO 2859-1 sampling plan: code letter, sample size, Ac and Re', 'Inspection level and AQL per customer', 'OK or NOK verdict computed from the defects entered', 'Series and prototype phases tracked separately', 'Full history, register export']],
+      ['Follow-up and non-conformities', 'What comes out of the inspection is followed through.',
+        ['Rejection rate by month, phase and customer', 'Target displayed with the gap to target', 'Non-conformity record for every rejected lot', 'Printable non-conformity report', 'Latest rejected lots always visible']]
+    ],
+    vues: [
+      ['Dashboard.', 'Rejection rate, inspected lots and 12-month trend.', 'OQC dashboard: rejection rate, inspected lots and monthly trend'],
+      ['New inspection.', 'The sampling plan fills itself in.', 'New inspection form with sampling plan'],
+      ['History.', 'All inspections, filterable and exportable.', 'History of recorded inspections'],
+      ['Non-conformities.', 'Rejected lots and the status of their handling.', 'List of open non-conformities on rejected lots'],
+      ['Customers.', 'Default inspection level and AQL for each customer.', 'Customer list with inspection level and AQL']
+    ],
+    capot: [
+      ['A single HTML file', 'Opens in Edge or Chrome. Nothing to install, no server.'],
+      ['Standard tables built in', 'Code letter, sample size, Ac and Re without opening the standard.'],
+      ['Shared folder', 'One inspection per file, numbered automatically.'],
+      ['Nothing gets overwritten', 'Changes made from another workstation are detected.'],
+      ['Excel export', 'The inspection register in one click.'],
+      ['Shared foundation', 'Same theme and same storage as the other applications.']
+    ]
+  },
+  ecme: {
+    nom: 'Gauge control', domaine: 'Metrology · gauge control',
+    titre: 'Gauge control · measuring equipment',
+    description: 'Measuring equipment application: gauge register, calibration due dates, planning and overdue checks.',
+    h1: 'A measuring equipment fleet always ready for audit',
+    lede: 'Every inspection, measuring and test equipment has its record, its status and its next due date. Overdue items show up before the auditor finds them.',
+    meta: ['Calibration', 'Planning', 'Register'],
+    chartLabel: 'An instrument is checked: the needle settles within the tolerance zone, the equipment is declared compliant.',
+    probleme: 'Before: an Excel file that did not tell the whole story',
+    avant: ['The whole fleet in a single Excel file', 'Equipment that no longer existed still listed as active', 'Calibration delays that were not real'],
+    avantNum: ['18', 'pieces of equipment wrongly active in the old file'],
+    apres: ['Every item has a clear status: monitored, not monitored, retired', 'Due dates and delays recomputed every day', 'Planning of internal checks and external shipments', 'Register exportable to show as is'],
+    apresNum: ['Up-to-date fleet', 'and ready to show in an audit'],
+    impact: 'Rolling out the tool revealed 18 pieces of equipment still active although they no longer existed. In the old file, they showed as overdue for calibration: the application brought the gap to light before an auditor did.',
+    appTitre: 'The fleet, the due dates, the decisions',
+    blocs: [
+      ['Register and due dates', 'The state of the fleet on one screen.',
+        ['Record per item: location, interval, internal or external calibration', 'Overdue checks and 30-day due dates', 'Fleet compliance rate', 'Unmonitored and retired items kept apart from active ones', 'Import from Excel, register export']],
+      ['Checks and planning', 'From entering the result to the decision.',
+        ['Check entry and computation of the next due date', 'NOK results: equipment blocked, decision required', '3-month planning', 'Shipments grouped by external laboratory', 'Gage R&R study launched from the record']]
+    ],
+    vues: [
+      ['Dashboard.', 'Fleet compliance, overdue items and upcoming due dates.', 'Gauge dashboard: monitored items, overdue items and due dates'],
+      ['Fleet.', 'All equipment, filterable by location and status.', 'List of fleet equipment with due dates'],
+      ['Planning.', 'Checks for the next three months and external shipments.', 'Planning of upcoming checks over three months']
+    ],
+    capot: [
+      ['A single HTML file', 'Opens in Edge or Chrome. Nothing to install, no server.'],
+      ['Shared folder', 'One register, read by every workstation.'],
+      ['Merged edits', 'Two people can update the fleet at the same time.'],
+      ['Daily backup', 'A copy of the register is kept every day.'],
+      ['Linked to Gage R&R', 'The R&R study opens with the equipment already filled in.'],
+      ['Shared foundation', 'Same theme and same storage as the other applications.']
+    ]
+  },
+  'gage-rr': {
+    nom: 'Gage R&R', domaine: 'Measurement system · Gage R&R',
+    titre: 'Gage R&R · measurement system analysis',
+    description: 'Gage R&R application: MSA type 2 study with the average and range method, instant verdict, printable report and method guide.',
+    h1: 'Know whether you can trust the measurement',
+    lede: 'An R&R study shows how much of the variation comes from the measuring equipment and from the operators. The app guides data entry, computes the result live and explains how to read it.',
+    meta: ['MSA type 2', 'AIAG MSA', 'C++ / WebAssembly'],
+    chartLabel: 'Measured variation breaks down into repeatability, reproducibility and part variation; R&R reaches 26.7 %, conditionally acceptable.',
+    probleme: 'Before: a poorly understood method',
+    avant: ['A method little known outside quality', 'Results that are hard to interpret', 'A tool that was hard to read'],
+    apres: ['The verdict updates during data entry', 'Data sheets with a random order, ready to print', 'A built-in guide: what the study is for, how to read the result', 'A clean report to attach to the file'],
+    appTitre: 'From data sheet to report',
+    blocs: [
+      ['The study', 'Average and range method, according to the AIAG MSA manual.',
+        ['10 parts, 3 operators, 3 trials by default', '%R&R against tolerance and total variation', 'Number of distinct categories (ndc)', 'Decision: capable, conditionally acceptable, not capable', 'Reference data set to check the calculation']],
+      ['Around the study', 'What makes the method usable by everyone.',
+        ['Data sheets with a randomly drawn measuring order', 'Printable report with the variance components', 'Guide: purpose, execution, reading the results', 'Opens directly from an equipment record', 'Light or dark theme']]
+    ],
+    vues: [
+      ['Data entry.', 'The result is computed while the measurements are entered.', 'R&R study data entry with instant result'],
+      ['Report.', 'Decision, indicators and variance components.', 'R&R study report with decision and variance components'],
+      ['Data sheets.', 'The random order keeps the operator from remembering values.', 'Data sheet with a random measuring plan'],
+      ['Guide.', 'The method explained simply.', 'Gage R&R guide: what it is for and how to use it']
+    ],
+    capot: [
+      ['A single HTML file', 'Opens in Edge or Chrome. Nothing to install, no server.'],
+      ['C++ calculation engine', 'Compiled to WebAssembly and embedded in the page.'],
+      ['Verifiable calculation', 'The AIAG manual reference data set gives back the expected values.'],
+      ['Studies can be saved', 'A study can be saved and reopened later.'],
+      ['Linked to gauge control', 'The studied equipment comes from the metrology register.'],
+      ['Shared foundation', 'Same theme as the other applications.']
+    ]
+  }
+};
+
+/* Textes fixes du gabarit, par langue */
+const UI = {
+  fr: { accueil: 'Yassine Kaabar, accueil', nav: 'Navigation principale', parcours: 'Parcours', apps: 'Applications', retour: '← Revenir aux applications',
+    probleme: 'Le problème', avant: 'Avant', apres: 'Maintenant', terrain: 'Sur le terrain', app: "L'application", captures: 'Captures', images: "L'application en images",
+    fictif: "Données d'exemple fictives.", capot: 'Sous le capot', capotTitre: "Simple à déployer, solide à l'usage", autres: 'Autres applications',
+    prec: '← Précédente', suiv: 'Suivante →', titre: 'Titre', dessine: 'Dessiné par', remarque: 'Remarque', codeDemande: 'Code des applications disponible sur demande',
+    feuille: 'Feuille', rev: 'Rév. A', liens: 'Liens', autreLangue: 'EN', autreNom: 'English version', autreCode: 'en' },
+  en: { accueil: 'Yassine Kaabar, home', nav: 'Main navigation', parcours: 'Background', apps: 'Applications', retour: '← Back to applications',
+    probleme: 'The problem', avant: 'Before', apres: 'Now', terrain: 'On the shop floor', app: 'The application', captures: 'Screenshots', images: 'The application in pictures',
+    fictif: 'Fictitious sample data. Interface in French.', capot: 'Under the hood', capotTitre: 'Easy to deploy, robust in use', autres: 'Other applications',
+    prec: '← Previous', suiv: 'Next →', titre: 'Title', dessine: 'Drawn by', remarque: 'Remarks', codeDemande: 'Application source code available on request',
+    feuille: 'Sheet', rev: 'Rev. A', liens: 'Links', autreLangue: 'FR', autreNom: 'Version française', autreCode: 'fr' }
+};
+
 const e = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const li = a => a.map(x => `<li>${e(x)}</li>`).join('\n            ');
 const num = n => n ? `\n          <div class="big-num"><div><b>${e(n[0])}</b><span>${e(n[1])}</span></div></div>` : '';
+const SITE = 'https://ykaabar.github.io';
 
-function page(p, i) {
+/* Page d'une app dans une langue. Racine du site : ../ en français, ../../ en anglais. */
+function page(fr, i, lang) {
+  const p = lang === 'en' ? Object.assign({}, fr, EN[fr.slug], { vues: fr.vues.map((v, k) => [v[0], ...EN[fr.slug].vues[k]]) }) : fr;
+  const T = UI[lang], R = lang === 'en' ? '../../' : '../', ici = lang === 'en' ? '../' : '../', base = lang === 'en' ? 'en/' : '';
+  const autre = lang === 'en' ? `../../${p.slug}/` : `../en/${p.slug}/`;
+  const nomDe = x => (lang === 'en' && EN[x.slug] ? EN[x.slug].nom : x.nom);
   /* Cycle de navigation : Qyklo → SPC → SCAR → OQC → ECME → Gage R&R → Qyklo */
   const QYKLO = { slug: 'qyklo', nom: 'Qyklo' };
   const prec = i === 0 ? QYKLO : PAGES[i - 1], suiv = i === PAGES.length - 1 ? QYKLO : PAGES[i + 1];
   const figure = ([img, t, d, alt], k) => `        <figure class="${k === 0 ? 'wide ' : ''}reveal">
-          <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="../assets/img/${img}.webp" alt="${e(alt)}" loading="lazy" width="1600" height="1000"></div>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="${R}assets/img/${img}.webp" alt="${e(alt)}" loading="lazy" width="1600" height="1000"></div>
           <figcaption><b>${e(t)}</b> ${e(d)}</figcaption>
         </figure>`;
   return `<!doctype html>
-<html lang="fr">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${e(p.nom)} · Yassine Kaabar</title>
 <meta name="description" content="${e(p.description)}">
 <meta property="og:title" content="${e(p.titre)}">
-<meta property="og:image" content="https://ykaabar.github.io/assets/img/${p.vues[0][0]}.webp">
+<meta property="og:image" content="${SITE}/assets/img/${p.vues[0][0]}.webp">
+<link rel="alternate" hreflang="fr" href="${SITE}/${p.slug}/">
+<link rel="alternate" hreflang="en" href="${SITE}/en/${p.slug}/">
+<link rel="alternate" hreflang="x-default" href="${SITE}/${p.slug}/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141920'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='600' fill='white' text-anchor='middle'%3EYK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="${R}assets/site.css">
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="../" aria-label="Yassine Kaabar, accueil"><span class="mark" aria-hidden="true">YK</span><span class="name">Yassine Kaabar</span></a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="../#parcours">Parcours</a>
-      <a href="../#applications">Applications</a>
-      <a class="btn pri" href="${LINKEDIN}" rel="noopener">LinkedIn</a>
+    <a class="brand" href="${ici}" aria-label="${e(T.accueil)}"><span class="mark" aria-hidden="true">YK</span><span class="name">Yassine Kaabar</span></a>
+    <nav class="nav" aria-label="${e(T.nav)}">
+      <a href="${ici}#parcours">${T.parcours}</a>
+      <a href="${ici}#applications">${T.apps}</a>
+      <a class="lang" href="${autre}" hreflang="${T.autreCode}" lang="${T.autreCode}" aria-label="${e(T.autreNom)}">${T.autreLangue}</a>
+      <a class="btn pri in" href="${LINKEDIN}" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm7 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.91h-4v-11Z"/></svg><span class="lbl">LinkedIn</span></a>
     </nav>
   </div>
 </header>
@@ -231,7 +436,7 @@ function page(p, i) {
 <main>
   <section class="app-hero">
     <div class="wrap">
-      <a class="crumb" href="../#applications">← Revenir aux applications</a>
+      <a class="crumb" href="${ici}#applications">${e(T.retour)}</a>
       <div class="hero-grid">
         <div>
           <span class="k">${e(p.domaine)}</span>
@@ -249,18 +454,18 @@ function page(p, i) {
   <section class="tight">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="k">Le problème</span>
+        <span class="k">${e(T.probleme)}</span>
         <h2>${e(p.probleme)}</h2>
       </div>
       <div class="compare">
         <div class="panel before reveal">
-          <h3>Avant</h3>
+          <h3>${e(T.avant)}</h3>
           <ol class="steps">
             ${li(p.avant)}
           </ol>${num(p.avantNum)}
         </div>
         <div class="panel after reveal">
-          <h3>Maintenant</h3>
+          <h3>${e(T.apres)}</h3>
           <ol class="steps">
             ${li(p.apres)}
           </ol>${num(p.apresNum)}
@@ -274,7 +479,7 @@ ${p.impact ? `
       <div class="impact reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h6v6"/></svg>
         <div>
-          <span class="k">Sur le terrain</span>
+          <span class="k">${e(T.terrain)}</span>
           <p>${e(p.impact)}</p>
         </div>
       </div>
@@ -284,7 +489,7 @@ ${p.impact ? `
   <section class="tight">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="k">L'application</span>
+        <span class="k">${e(T.app)}</span>
         <h2>${e(p.appTitre)}</h2>
       </div>
       <div class="feats">
@@ -302,9 +507,9 @@ ${p.blocs.map(([t, d, l]) => `        <div class="panel reveal">
   <section class="tight">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="k">Captures</span>
-        <h2>L'application en images</h2>
-        <p>Données d'exemple fictives.</p>
+        <span class="k">${e(T.captures)}</span>
+        <h2>${e(T.images)}</h2>
+        <p>${e(T.fictif)}</p>
       </div>
       <div class="gallery">
 ${p.vues.map(figure).join('\n')}
@@ -315,8 +520,8 @@ ${p.vues.map(figure).join('\n')}
   <section class="tight">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="k">Sous le capot</span>
-        <h2>Simple à déployer, solide à l'usage</h2>
+        <span class="k">${e(T.capot)}</span>
+        <h2>${e(T.capotTitre)}</h2>
       </div>
       <div class="methods">
 ${p.capot.map(([t, d]) => `        <div class="method reveal"><b>${e(t)}</b><span>${e(d)}</span></div>`).join('\n')}
@@ -326,9 +531,9 @@ ${p.capot.map(([t, d]) => `        <div class="method reveal"><b>${e(t)}</b><spa
 
   <section class="tight">
     <div class="wrap">
-      <nav class="pager" aria-label="Autres applications">
-        <a href="../${prec.slug}/"><span>← Précédente</span><b>${e(prec.nom)}</b></a>
-        <a class="next" href="../${suiv.slug}/"><span>Suivante →</span><b>${e(suiv.nom)}</b></a>
+      <nav class="pager" aria-label="${e(T.autres)}">
+        <a href="../${prec.slug}/"><span>${e(T.prec)}</span><b>${e(nomDe(prec))}</b></a>
+        <a class="next" href="../${suiv.slug}/"><span>${e(T.suiv)}</span><b>${e(nomDe(suiv))}</b></a>
       </nav>
     </div>
   </section>
@@ -337,24 +542,24 @@ ${p.capot.map(([t, d]) => `        <div class="method reveal"><b>${e(t)}</b><spa
 <footer class="cartouche">
   <div class="wrap">
     <div class="cart">
-      <div class="full"><span class="lab">Titre</span><span class="val">${e(p.titre)}</span></div>
-      <div><span class="lab">Dessiné par</span><span class="val">Yassine Kaabar</span></div>
+      <div class="full"><span class="lab">${T.titre}</span><span class="val">${e(p.titre)}</span></div>
+      <div><span class="lab">${T.dessine}</span><span class="val">Yassine Kaabar</span></div>
       <div><span class="lab">Date</span><span class="val">11.2026</span></div>
-      <div class="full"><span class="lab">Remarque</span><span class="val">Code des applications disponible sur demande</span></div>
-      <div><span class="lab">Feuille</span><span class="val">${i + 3} / ${PAGES.length + 2} · Rév. A</span></div>
-      <div><span class="lab">Contact</span><nav aria-label="Liens"><a href="${LINKEDIN}" rel="noopener">LinkedIn</a><a href="https://github.com/ykaabar" rel="noopener">GitHub</a></nav></div>
+      <div class="full"><span class="lab">${T.remarque}</span><span class="val">${e(T.codeDemande)}</span></div>
+      <div><span class="lab">${T.feuille}</span><span class="val">${i + 3} / ${PAGES.length + 2} · ${T.rev}</span></div>
+      <div><span class="lab">Contact</span><nav aria-label="${e(T.liens)}"><a href="${LINKEDIN}" rel="noopener">LinkedIn</a><a href="https://github.com/ykaabar" rel="noopener">GitHub</a></nav></div>
     </div>
   </div>
 </footer>
-<script src="../assets/site.js"></script>
+<script src="${R}assets/site.js"></script>
 </body>
 </html>
 `;
 }
 
-PAGES.forEach((p, i) => {
-  const dir = path.join(racine, p.slug);
+for (const lang of ['fr', 'en']) PAGES.forEach((p, i) => {
+  const dir = path.join(racine, lang === 'en' ? 'en' : '', p.slug);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), page(p, i));
-  console.log(`✓ ${p.slug}/index.html`);
+  fs.writeFileSync(path.join(dir, 'index.html'), page(p, i, lang));
+  console.log(`✓ ${lang === 'en' ? 'en/' : ''}${p.slug}/index.html`);
 });
