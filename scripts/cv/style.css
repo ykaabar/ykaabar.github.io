@@ -39,3 +39,6 @@ footer { margin-top: 6mm; display: grid; grid-template-columns: 2fr 1fr 1fr; bor
 footer div { padding: 1.5mm 2.5mm; border-left: .6pt solid var(--line); }
 footer div:first-child { border-left: 0; }
 footer span { display: block; font: 500 6.6pt "PlexMono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+/* Un titre de section ne reste jamais seul en bas de page : il suit son contenu */
+h2 { break-after: avoid-page; page-break-after: avoid; }
+.form, dl, .profil { break-inside: avoid-page; }
