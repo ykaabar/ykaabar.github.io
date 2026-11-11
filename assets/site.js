@@ -181,7 +181,59 @@
     drapeau(svg, L, T + pas * 4 + 2, 'Acceptable sous conditions', 'var(--warn)', 1.7);
   }
 
-  const DESSINS = { spc: carteSPC, scar: pipeline8D, oqc: echantillon, ecme: jauge, rr: barresRR };
+  /* Qyklo : les mini-apps rejoignent le cycle PDCA, qui se boucle.
+     Même géométrie que le logo (anneau coupé en 4, segment 0 = Plan en haut,
+     sens horaire ; coupures de 14° ; queue à 45° vers le bas à droite).
+     Le Q ne tourne jamais : les segments s'allument tour à tour. */
+  function cycleQyklo(svg) {
+    const { W, narrow } = cadre(svg, 380, 340);
+    const H = narrow ? 340 : 380, cx = W / 2, cy = narrow ? 158 : 182, R = narrow ? 70 : 92, T = narrow ? 26 : 34;
+    const pt = a => [cx + R * Math.cos(a * Math.PI / 180), cy + R * Math.sin(a * Math.PI / 180)];
+    const noms = ['Plan', 'Do', 'Check', 'Act'];
+    const modules = narrow ? ['Politique · KPI', 'Atelier', 'Audits · Mesure', '8D · SCAR'] : ['Politique · KPI · Revues', 'Alertes · Rebuts · Terrain', 'Audits · Capabilité · Métrologie', '8D · SCAR · CAPA'];
+    const lumiere = [.5, .85, 1.75, 2.55];
+    noms.forEach((nom, i) => {
+      const deb = -90 - 45 + i * 90 + 7, fin = deb + 76, [x1, y1] = pt(deb), [x2, y2] = pt(fin);
+      el('path', { d: `M${x1.toFixed(1)} ${y1.toFixed(1)}A${R} ${R} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`, class: 'seg', 'stroke-width': T, style: `--d:${lumiere[i]}s` }, svg);
+      /* libellés : au-dessus, à droite, en dessous, à gauche */
+      const off = R + T / 2 + (narrow ? 14 : 18);
+      const pos = [[cx, cy - off - 18, 'middle'], [cx + off, cy - 6, 'start'], [cx, cy + off + 6, 'middle'], [cx - off, cy - 6, 'end']][i];
+      const g = el('g', { class: 'a', style: `--d:${lumiere[i]}s` }, svg);
+      el('text', { x: pos[0], y: pos[1], 'text-anchor': pos[2], class: 'qlab' }, g).textContent = nom.toUpperCase();
+      const lignes = i % 2 === 0 ? [modules[i]] : modules[i].split(' · '); /* côtés : un module par ligne */
+      lignes.forEach((l, k) => el('text', { x: pos[0], y: pos[1] + 18 + k * 16, 'text-anchor': pos[2], class: 'qmod' }, g).textContent = l);
+    });
+    /* Les mini-apps du portfolio rejoignent leur quadrant (SPC et ECME : Check ; SCAR : Act) */
+    const chips = [['1', 'SPC', 2, -1], ['4', 'ECME', 2, 1], ['2', 'SCAR', 3, 0]];
+    chips.forEach(([n, nom, q, k], j) => {
+      const a = -90 + q * 90 + (k * 18), [tx, ty] = [cx + R * Math.cos(a * Math.PI / 180), cy + R * Math.sin(a * Math.PI / 180)];
+      const w = nom.length * 7.3 + 44, x = tx - w / 2, y = ty - 14;
+      const depart = [[-(cx - 60), -(cy - 30)], [W - cx - 60, -(cy - 30)], [-(cx - 70), H - cy - 40]][j];
+      const g = el('g', { class: 'chip', style: `--dx:${depart[0]}px;--dy:${depart[1]}px;--d:${.15 + j * .03}s;--t:${(q === 2 ? 1.6 : 2.4)}s` }, svg);
+      el('rect', { x, y, width: w, height: 28, rx: 4 }, g);
+      el('circle', { cx: x + 16, cy: y + 14, r: 9 }, g);
+      el('text', { x: x + 16, y: y + 18, 'text-anchor': 'middle' }, g).textContent = n;
+      el('text', { x: x + 32, y: y + 18 }, g).textContent = nom;
+    });
+    /* La queue orange sort : le cycle est bouclé, on retrouve le symbole Qyklo */
+    const q0 = R * .38, q1 = R * 1.43, c = Math.SQRT1_2; /* proportions du logo : 0,38 R à 1,43 R */
+    const queue = el('line', { x1: cx + q0 * c, y1: cy + q0 * c, x2: cx + q1 * c, y2: cy + q1 * c, class: 'queue', 'stroke-width': T, style: '--d:3s' }, svg);
+    queue.style.setProperty('--len', Math.ceil((q1 - q0) + T));
+    const lib = el('g', { class: 'a', style: '--d:3.3s' }, svg), txt = 'Cycle bouclé', wl = txt.length * 7.3 + 24;
+    el('rect', { x: cx - wl / 2, y: H - 30, width: wl, height: 26, rx: 4, style: 'fill:#1a7346' }, lib);
+    el('text', { x: cx - wl / 2 + 12, y: H - 13, style: 'fill:#fff;font-weight:600' }, lib).textContent = txt;
+  }
+
+  /* Accueil : la charte Qyklo s'applique tant que sa section occupe le centre de l'écran */
+  const zone = document.querySelector('[data-zone-charte="qyklo"]');
+  if (zone && 'IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) document.documentElement.dataset.charte = 'qyklo';
+      else delete document.documentElement.dataset.charte;
+    }), { rootMargin: '-45% 0px -45% 0px' }).observe(zone);
+  }
+
+  const DESSINS = { qyklo: cycleQyklo, spc: carteSPC, scar: pipeline8D, oqc: echantillon, ecme: jauge, rr: barresRR };
   document.querySelectorAll('svg[data-chart]').forEach(svg => {
     const dessiner = DESSINS[svg.dataset.chart]; if (!dessiner) return;
     dessiner(svg);

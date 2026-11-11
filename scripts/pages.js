@@ -194,7 +194,9 @@ const li = a => a.map(x => `<li>${e(x)}</li>`).join('\n            ');
 const num = n => n ? `\n          <div class="big-num"><div><b>${e(n[0])}</b><span>${e(n[1])}</span></div></div>` : '';
 
 function page(p, i) {
-  const prec = PAGES[(i + PAGES.length - 1) % PAGES.length], suiv = PAGES[(i + 1) % PAGES.length];
+  /* Cycle de navigation : Qyklo → SPC → SCAR → OQC → ECME → Gage R&R → Qyklo */
+  const QYKLO = { slug: 'qyklo', nom: 'Qyklo' };
+  const prec = i === 0 ? QYKLO : PAGES[i - 1], suiv = i === PAGES.length - 1 ? QYKLO : PAGES[i + 1];
   const figure = ([img, t, d, alt], k) => `        <figure class="${k === 0 ? 'wide ' : ''}reveal">
           <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="../assets/img/${img}.webp" alt="${e(alt)}" loading="lazy" width="1600" height="1000"></div>
           <figcaption><b>${e(t)}</b> ${e(d)}</figcaption>
@@ -339,7 +341,7 @@ ${p.capot.map(([t, d]) => `        <div class="method reveal"><b>${e(t)}</b><spa
       <div><span class="lab">Dessiné par</span><span class="val">Yassine Kaabar</span></div>
       <div><span class="lab">Date</span><span class="val">11.2026</span></div>
       <div class="full"><span class="lab">Remarque</span><span class="val">Code des applications disponible sur demande</span></div>
-      <div><span class="lab">Feuille</span><span class="val">${i + 2} / ${PAGES.length + 1} · Rév. A</span></div>
+      <div><span class="lab">Feuille</span><span class="val">${i + 3} / ${PAGES.length + 2} · Rév. A</span></div>
       <div><span class="lab">Contact</span><nav aria-label="Liens"><a href="${LINKEDIN}" rel="noopener">LinkedIn</a><a href="https://github.com/ykaabar" rel="noopener">GitHub</a></nav></div>
     </div>
   </div>

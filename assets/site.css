@@ -390,3 +390,95 @@ body { counter-reset: vue; }
 @keyframes needle { from { transform: rotate(-72deg); } }
 .app-hero .hero-grid { margin-top: var(--s-5); }
 @media (prefers-reduced-motion: reduce) { .chart .a { opacity: 1; } }
+
+/* =====================================================================
+   Charte Qyklo
+   html[data-charte="qyklo"] : les couleurs passent à la charte Qyklo.
+   Sur l'accueil, la bascule suit le défilement (section Qyklo à l'écran) ;
+   sur la page Qyklo, elle est fixe et les polices suivent aussi
+   (html[data-polices="qyklo"]). Les couleurs glissent en 300 ms grâce
+   aux variables enregistrées ci-dessous (navigateurs récents ; ailleurs,
+   le changement est simplement instantané).
+   ===================================================================== */
+@property --bg { syntax: '<color>'; inherits: true; initial-value: #f7f8fa; }
+@property --surface { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
+@property --surface-2 { syntax: '<color>'; inherits: true; initial-value: #f1f3f6; }
+@property --ink { syntax: '<color>'; inherits: true; initial-value: #141920; }
+@property --ink-2 { syntax: '<color>'; inherits: true; initial-value: #3d4653; }
+@property --muted { syntax: '<color>'; inherits: true; initial-value: #5d6674; }
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #0f60c4; }
+@property --accent-text { syntax: '<color>'; inherits: true; initial-value: #0d58b4; }
+@property --plan { syntax: '<color>'; inherits: true; initial-value: rgba(15, 96, 196, .06); }
+@property --plan-2 { syntax: '<color>'; inherits: true; initial-value: rgba(15, 96, 196, .1); }
+html { transition: --bg var(--m-300) ease, --surface var(--m-300) ease, --surface-2 var(--m-300) ease, --ink var(--m-300) ease,
+  --ink-2 var(--m-300) ease, --muted var(--m-300) ease, --accent var(--m-300) ease, --accent-text var(--m-300) ease,
+  --plan var(--m-300) ease, --plan-2 var(--m-300) ease; }
+
+html[data-charte="qyklo"] {
+  --bg: #f5f7f8; --surface: #ffffff; --surface-2: #eaeff2;
+  --line: rgba(18, 50, 74, .14); --line-2: rgba(18, 50, 74, .08);
+  --ink: #12324a; --ink-2: #2e4a5e; --muted: #4f6271; --faint: #8497a4;
+  --accent: #0b6e79; --accent-hover: #095961; --accent-text: #0b6e79;
+  --ok: #1a7346; --warn: #8a5a00; --danger: #b3261e; --grid: #e4eaee;
+  --plan: rgba(18, 50, 74, .045); --plan-2: rgba(18, 50, 74, .08);
+  --needle: #e4572e;
+}
+/* Polices Qyklo (page Qyklo uniquement : sur l'accueil, changer de police au défilement ferait sauter la mise en page) */
+@font-face { font-family: "Archivo"; src: url("qyklo/fonts/Archivo-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("qyklo/fonts/IBMPlexSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("qyklo/fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("qyklo/fonts/IBMPlexMono-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+html[data-polices="qyklo"] { --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+/* Archivo n'existe qu'en Bold : exception à la règle des graisses, imposée par la charte Qyklo */
+html[data-polices="qyklo"] h1, html[data-polices="qyklo"] h2, html[data-polices="qyklo"] .figure b, html[data-polices="qyklo"] .big-num b {
+  font-family: "Archivo", "Arial Narrow", system-ui, sans-serif; font-weight: 700; letter-spacing: -.01em; }
+
+/* ---------- Section Qyklo de l'accueil (« l'ensemble ») ---------- */
+.ensemble { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--s-7); align-items: center; padding: var(--s-7);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--sh); position: relative; }
+.ensemble .rep-0 { position: absolute; top: var(--s-5); right: var(--s-5); }
+.ensemble .wordmark { height: 48px; width: auto; margin: var(--s-4) 0 var(--s-5); }
+.ensemble p { color: var(--ink-2); max-width: 52ch; }
+.ensemble .modules { margin-top: var(--s-5); display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-4); font-size: var(--t-2); }
+.ensemble .modules dt { font: 500 var(--t-meta)/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+.ensemble .modules dd { margin: 0; color: var(--ink-2); }
+.ensemble .actions { margin-top: var(--s-6); }
+.ensemble svg.chart { width: 100%; }
+
+/* ---------- Illustration Qyklo : le cycle se boucle ----------
+   Même exception documentée que les autres illustrations. Le Q ne tourne
+   jamais (règle de la charte) : les segments s'allument tour à tour,
+   puis la queue orange sort. */
+.chart .seg { fill: none; stroke: var(--grid); }
+.chart.play .seg { animation: lit var(--m-300) ease-out var(--d) forwards; }
+.chart .seg-on { stroke: #12324a; }
+@keyframes lit { 0% { stroke: #0b6e79; } 100% { stroke: #12324a; } }
+.chart .queue { stroke: #e4572e; stroke-linecap: round; stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+.chart.play .queue { animation: draw var(--m-300) var(--out) var(--d) forwards; }
+.chart .chip { opacity: 0; }
+.chart .chip rect { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.chart .chip circle { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.chart .chip text { fill: var(--ink); }
+.chart.play .chip { animation: absorbe var(--t) ease-in-out var(--d) forwards; }
+@keyframes absorbe {
+  0% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
+  15% { opacity: 1; transform: translate(var(--dx), var(--dy)); }
+  80% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(0, 0) scale(.6); }
+}
+.chart .qlab { font: 500 12px var(--mono); letter-spacing: .08em; fill: var(--ink); }
+.chart .qmod { fill: var(--muted); }
+
+@media (max-width: 767.98px) {
+  .ensemble { grid-template-columns: 1fr; padding: var(--s-5); gap: var(--s-5); }
+  .ensemble .wordmark { height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { transition: none; }
+  .chart .seg { stroke: #12324a; }
+  .chart .queue { stroke-dashoffset: 0; }
+  .chart .chip { opacity: 0; }
+}
+a.method { color: inherit; text-decoration: none; transition: border-color var(--m-150) ease; }
+@media (hover: hover) { a.method:hover { border-color: var(--accent); } }
+.impact img { width: 40px; height: 40px; }
