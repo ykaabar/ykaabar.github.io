@@ -23,7 +23,7 @@ const PAGES = [
     avantNum: ['1 à 2 h', 'par rapport, et aucun suivi pendant la production'],
     apres: ["L'app lit directement les exports de la machine de mesure", 'Cartes, capabilités et règles de détection sont calculées pour chaque cote', "Le rapport, interne ou client, se génère et s'imprime en PDF", "Au poste, l'opérateur suit chaque pièce en temps réel"],
     apresNum: ['Quelques clics', 'pour un rapport propre, et un vrai suivi de la fraiseuse'],
-    impact: "Les statistiques de suivi ont permis de remonter à la cause racine d'un défaut de fraisage. Avec l'outil en place, la dérive aurait été visible bien avant d'atteindre le client.",
+    impact: "La SPC automatisée des paramètres critiques, d'abord dans un fichier Excel puis dans cette application, a porté le rendement d'un produit Chip-on-Board de haute complexité de 89 % à 98 %. Les statistiques de suivi ont aussi permis de remonter à la cause racine d'un défaut de fraisage.",
     appTitre: 'Deux écrans, deux métiers',
     blocs: [
       ['Supervision · qualité et responsables', 'Analyser un produit, une cote, une période ou des OF choisis.',
@@ -204,7 +204,7 @@ const EN = {
     avantNum: ['1 to 2 h', 'per report, and no monitoring during production'],
     apres: ['The app reads the measuring machine exports directly', 'Charts, capability and detection rules are computed for every dimension', 'The report, internal or customer, is generated and printed to PDF', 'At the workstation, the operator follows every part in real time'],
     apresNum: ['A few clicks', 'for a clean report, and real monitoring of the milling machine'],
-    impact: 'Process monitoring statistics made it possible to trace a milling defect back to its root cause. With the tool in place, the drift would have been visible long before it reached the customer.',
+    impact: 'Automated SPC of critical parameters, first in an Excel file and then in this application, raised the yield of a highly complex Chip-on-Board product from 89 % to 98 %. Process monitoring statistics also made it possible to trace a milling defect back to its root cause.',
     appTitre: 'Two screens, two jobs',
     blocs: [
       ['Supervision · quality and managers', 'Analyse a product, a dimension, a period or selected work orders.',
@@ -376,12 +376,12 @@ const UI = {
     probleme: 'Le problème', avant: 'Avant', apres: 'Maintenant', terrain: 'Sur le terrain', app: "L'application", captures: 'Captures', images: "L'application en images",
     fictif: "Données d'exemple fictives.", capot: 'Sous le capot', capotTitre: "Simple à déployer, solide à l'usage", autres: 'Autres applications',
     prec: '← Précédente', suiv: 'Suivante →', titre: 'Titre', dessine: 'Dessiné par', remarque: 'Remarque', codeDemande: 'Code des applications disponible sur demande',
-    feuille: 'Feuille', rev: 'Rév. A', liens: 'Liens', autreLangue: 'EN', autreNom: 'English version', autreCode: 'en' },
+    feuille: 'Feuille', rev: 'Rév. A', stats: "Mesure d'audience anonyme, sans cookie (GoatCounter).", liens: 'Liens', autreLangue: 'EN', autreNom: 'English version', autreCode: 'en' },
   en: { accueil: 'Yassine Kaabar, home', nav: 'Main navigation', parcours: 'Background', apps: 'Applications', retour: '← Back to applications',
     probleme: 'The problem', avant: 'Before', apres: 'Now', terrain: 'On the shop floor', app: 'The application', captures: 'Screenshots', images: 'The application in pictures',
     fictif: 'Fictitious sample data. Interface in French.', capot: 'Under the hood', capotTitre: 'Easy to deploy, robust in use', autres: 'Other applications',
     prec: '← Previous', suiv: 'Next →', titre: 'Title', dessine: 'Drawn by', remarque: 'Remarks', codeDemande: 'Application source code available on request',
-    feuille: 'Sheet', rev: 'Rev. A', liens: 'Links', autreLangue: 'FR', autreNom: 'Version française', autreCode: 'fr' }
+    feuille: 'Sheet', rev: 'Rev. A', stats: 'Anonymous, cookie-free visit statistics (GoatCounter).', liens: 'Links', autreLangue: 'FR', autreNom: 'Version française', autreCode: 'fr' }
 };
 
 const e = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -410,7 +410,12 @@ function page(fr, i, lang) {
 <title>${e(p.nom)} · Yassine Kaabar</title>
 <meta name="description" content="${e(p.description)}">
 <meta property="og:title" content="${e(p.titre)}">
-<meta property="og:image" content="${SITE}/assets/img/${p.vues[0][0]}.webp">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${SITE}/${base}${p.slug}/">
+<meta property="og:image" content="${SITE}/assets/og/${lang}-${p.slug}.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="fr" href="${SITE}/${p.slug}/">
 <link rel="alternate" hreflang="en" href="${SITE}/en/${p.slug}/">
 <link rel="alternate" hreflang="x-default" href="${SITE}/${p.slug}/">
@@ -549,8 +554,10 @@ ${p.capot.map(([t, d]) => `        <div class="method reveal"><b>${e(t)}</b><spa
       <div><span class="lab">${T.feuille}</span><span class="val">${i + 3} / ${PAGES.length + 2} · ${T.rev}</span></div>
       <div><span class="lab">Contact</span><nav aria-label="${e(T.liens)}"><a href="${LINKEDIN}" rel="noopener">LinkedIn</a><a href="https://github.com/ykaabar" rel="noopener">GitHub</a></nav></div>
     </div>
+    <p class="note-stats">${e(T.stats)}</p>
   </div>
 </footer>
+<script data-goatcounter="https://ykaabar.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="${R}assets/site.js"></script>
 </body>
 </html>

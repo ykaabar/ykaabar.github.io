@@ -1,0 +1,41 @@
+/* CV web · A4, une colonne, texte réel (lisible par les logiciels de recrutement) */
+@font-face { font-family: "Plex"; src: url("../../assets/qyklo/fonts/IBMPlexSans-Regular.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Plex"; src: url("../../assets/qyklo/fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "PlexMono"; src: url("../../assets/qyklo/fonts/IBMPlexMono-Medium.woff2") format("woff2"); font-weight: 500; }
+@page { size: A4; margin: 14mm 15mm 14mm; }
+:root { --ink: #141920; --ink-2: #3d4653; --muted: #5d6674; --accent: #0d58b4; --line: #d5dbe3; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font: 400 9.4pt/1.42 "Plex", system-ui, sans-serif; color: var(--ink); }
+a { color: var(--accent); text-decoration: none; }
+header { display: grid; grid-template-columns: 1fr auto; gap: 4mm; align-items: end; padding-bottom: 4mm; border-bottom: 1.2pt solid var(--ink); }
+h1 { margin: 0; font-size: 22pt; line-height: 1.1; font-weight: 600; letter-spacing: -.01em; }
+.titre { margin: 1.5mm 0 0; font-size: 10.5pt; color: var(--ink-2); }
+.coord { text-align: right; font-size: 8.6pt; color: var(--muted); line-height: 1.5; }
+.coord a { font-family: "PlexMono", monospace; font-size: 8.2pt; }
+.cote { display: flex; align-items: center; gap: 2mm; margin-top: 2mm; font: 500 7.6pt "PlexMono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.cote::before, .cote::after { content: ''; flex: 1; height: 2.2mm; border-left: .6pt solid currentColor; border-right: .6pt solid currentColor;
+  background: linear-gradient(currentColor, currentColor) center / 100% .6pt no-repeat; }
+h2 { margin: 5mm 0 2mm; padding-bottom: 1mm; border-bottom: .6pt solid var(--line); font: 500 8.2pt "PlexMono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+h2 .n { color: var(--muted); }
+.profil { margin: 0; color: var(--ink-2); text-align: justify; }
+.poste { break-inside: avoid-page; margin-bottom: 3mm; }
+.poste .tete { display: flex; justify-content: space-between; gap: 4mm; }
+.poste h3 { margin: 0; font-size: 10pt; font-weight: 600; }
+.poste .date { font: 500 8.4pt "PlexMono", monospace; color: var(--accent); white-space: nowrap; }
+.poste .ou { display: flex; justify-content: space-between; gap: 4mm; color: var(--muted); font-size: 8.8pt; margin: .5mm 0 1.5mm; }
+ul { margin: 0; padding-left: 4mm; }
+li { margin-bottom: 1mm; color: var(--ink-2); }
+li::marker { color: var(--accent); }
+b { font-weight: 600; color: var(--ink); }
+dl { margin: 0; display: grid; grid-template-columns: 34mm 1fr; gap: 1.2mm 4mm; }
+dt { font-weight: 600; }
+dd { margin: 0; color: var(--ink-2); }
+.form { display: grid; grid-template-columns: 1fr auto; gap: 1mm 4mm; }
+.form span:nth-child(even) { font: 500 8.4pt "PlexMono", monospace; color: var(--accent); }
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.deux h2 { margin-top: 4mm; }
+footer { margin-top: 6mm; display: grid; grid-template-columns: 2fr 1fr 1fr; border: .8pt solid var(--ink); font-size: 8pt; break-inside: avoid; }
+footer div { padding: 1.5mm 2.5mm; border-left: .6pt solid var(--line); }
+footer div:first-child { border-left: 0; }
+footer span { display: block; font: 500 6.6pt "PlexMono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }

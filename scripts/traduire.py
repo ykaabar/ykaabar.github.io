@@ -7,6 +7,7 @@ import pathlib, sys
 racine = pathlib.Path(__file__).resolve().parent.parent
 
 COMMUN = [
+    ("<p class=\"note-stats\">Mesure d'audience anonyme, sans cookie (GoatCounter).</p>", '<p class="note-stats">Anonymous, cookie-free visit statistics (GoatCounter).</p>'),
     ('aria-label="Yassine Kaabar, accueil"', 'aria-label="Yassine Kaabar, home"'),
     ('aria-label="Navigation principale"', 'aria-label="Main navigation"'),
     ('#parcours">Parcours</a>', '#parcours">Background</a>'),
@@ -21,45 +22,30 @@ COMMUN = [
 ]
 
 ACCUEIL = [
+    ('content="Ingénieur Qualité, plus de 5 ans en électronique de haute précision (ISO 9001, ISO 13485). Qualité clients et fournisseurs, lancements produits, SPC. Applications web pour la qualité et Qyklo."',
+     'content="Quality Engineer, over 5 years in high-precision electronics (ISO 9001, ISO 13485). Customer and supplier quality, product launches, SPC. Web applications for quality, and Qyklo."'),
+    ('content="Plus de 5 ans en qualité industrielle. Rendement porté de 89 % à 98 % par la SPC, zéro réclamation client en 3 ans sur les lancements."',
+     'content="Over 5 years in industrial quality. Yield raised from 89 % to 98 % through SPC, zero customer complaints in 3 years on product launches."'),
+    ('aria-hidden="true">5+ ans · ISO 13485</div>', 'aria-hidden="true">5+ years · ISO 13485</div>'),
+    ("Plus de 5 ans en qualité industrielle dans l'électronique de haute précision, certifiée ISO&nbsp;9001 et ISO&nbsp;13485&nbsp;: qualité clients et fournisseurs, lancements de nouveaux produits, amélioration des procédés par la donnée. Je conçois aussi mes propres outils qualité.",
+     "Over 5 years in industrial quality in high-precision electronics, certified to ISO&nbsp;9001 and ISO&nbsp;13485: customer and supplier quality, new product launches, data-driven process improvement. I also design my own quality tools."),
+    ('Yassine_Kaabar_CV.pdf" download>', 'Yassine_Kaabar_CV_EN.pdf" download>'),
+    ('              Télécharger mon CV</a>', '              Download my CV</a>'),
+    ('<b>89 → 98 %</b><span>de rendement grâce à la SPC automatisée</span>', '<b>89 → 98 %</b><span>yield through automated SPC</span>'),
+    ('<b>0</b><span>réclamation client en 3 ans sur les lancements</span>', '<b>0</b><span>customer complaints in 3 years on product launches</span>'),
+    ('<b>−30 %</b><span>de réclamations fournisseurs, 40 fournisseurs pilotés</span>', '<b>−30 %</b><span>supplier complaints, 40 suppliers managed</span>'),
+    ('<b>17,3 → 0 %</b><span>de rebut au fraisage en 7 mois</span>', '<b>17.3 → 0 %</b><span>milling scrap in 7 months</span>'),
+    ('<span>Rendement <b>89 → 98 %</b></span>', '<span>Yield <b>89 → 98 %</b></span>'),
+    ('assets/og/fr-accueil.png', 'assets/og/en-accueil.png'),
+    ('<meta property="og:url" content="https://ykaabar.github.io/">', '<meta property="og:url" content="https://ykaabar.github.io/en/">'),
     ('<html lang="fr">', '<html lang="en">'),
     ('<title>Yassine Kaabar · Ingénieur Qualité</title>', '<title>Yassine Kaabar · Quality Engineer</title>'),
-    ('content="Ingénieur Qualité, 6 ans dans l\'industrie électronique (ISO 13485, 9001, 14001, 45001). Applications web pour la qualité : SPC, SCAR et 8D, OQC, ECME, Gage R&R."',
-     'content="Quality Engineer, 6 years in the electronics industry (ISO 13485, 9001, 14001, 45001). Web applications for quality: SPC, SCAR and 8D, OQC, gauge control, Gage R&R, and Qyklo."'),
     ('content="Yassine Kaabar · Ingénieur Qualité"', 'content="Yassine Kaabar · Quality Engineer"'),
-    ('content="6 ans en qualité dans l\'industrie électronique. Cinq applications conçues pour la qualité au quotidien."',
-     'content="6 years in quality in the electronics industry. Applications designed for everyday quality work."'),
     ('href="assets/', 'href="../assets/'), ('src="assets/', 'src="../assets/'),
     ('href="./" aria-label', 'href="./" aria-label'),
     ('<span class="k">Ingénieur Qualité</span>', '<span class="k">Quality Engineer</span>'),
-    ('aria-hidden="true">6 ans · ISO 13485</div>', 'aria-hidden="true">6 years · ISO 13485</div>'),
-    ("6 ans en qualité dans l'industrie électronique, en environnement exigeant (ISO&nbsp;13485). Je conçois aussi mes propres outils&nbsp;: des applications web qui simplifient la qualité au quotidien, de l'atelier aux fournisseurs.",
-     "6 years in quality in the electronics industry, in a demanding environment (ISO&nbsp;13485). I also design my own tools: web applications that make everyday quality work simpler, from the shop floor to the suppliers."),
     ('>Découvrir mes applications</a>', '>Explore my applications</a>'),
     ('Voir mon profil LinkedIn</a>', 'View my LinkedIn profile</a>'),
-    ('<b>6 ans</b><span>en qualité, industrie électronique</span>', '<b>6 years</b><span>in quality, electronics industry</span>'),
-    ('<span>et ISO 9001, 14001, 45001</span>', '<span>and ISO 9001, 14001, 45001</span>'),
-    ('<span>applications conçues, dont Qyklo</span>', '<span>applications designed, including Qyklo</span>'),
-    ('<span>au TOEIC</span>', '<span>TOEIC score</span>'),
-    ('<span class="k">Parcours</span>', '<span class="k">Background</span>'),
-    ('<h2>Formation et compétences</h2>', '<h2>Education and skills</h2>'),
-    ('<h3>Formation</h3>', '<h3>Education</h3>'),
-    ('<b>Mastère Spécialisé® Management QSE</b><span>Qualité, sécurité, environnement</span>',
-     '<b>Mastère Spécialisé® in QHSE Management</b><span>Post-master\'s degree · quality, health and safety, environment</span>'),
-    ("<b>Master Ingénierie de l'environnement</b><span>HSE</span>", "<b>Master's degree in Environmental Engineering</b><span>HSE</span>"),
-    ('<h3>Langues</h3>', '<h3>Languages</h3>'),
-    ('<b>Français</b><span>langue maternelle</span>', '<b>French</b><span>native</span>'),
-    ('<b>Anglais</b><span>TOEIC 985/990</span>', '<b>English</b><span>TOEIC 985/990</span>'),
-    ('<b>Allemand</b><span>notions</span>', '<b>German</b><span>basic</span>'),
-    ('<h3>Compétences</h3>', '<h3>Skills</h3>'),
-    ('<li>Systèmes de management ISO 13485, 9001, 14001 et 45001</li>', '<li>ISO 13485, 9001, 14001 and 45001 management systems</li>'),
-    ('<li>Audit interne et audit fournisseur</li>', '<li>Internal and supplier audits</li>'),
-    ('<li>Team leader 8D et CAPA</li>', '<li>8D and CAPA team leader</li>'),
-    ('<li>Management des fournisseurs</li>', '<li>Supplier management</li>'),
-    ('<li>Qualification de nouveaux produits : APQP, PPAP, FAI</li>', '<li>New product qualification: APQP, PPAP, FAI</li>'),
-    ('<li>Amélioration continue</li>', '<li>Continuous improvement</li>'),
-    ('<li>Métrologie : programmation MMT, Keyence IM et LM</li>', '<li>Metrology: CMM programming, Keyence IM and LM</li>'),
-    ('<li>Maîtrise statistique des procédés et capabilités</li>', '<li>Statistical process control and capability</li>'),
-    ("<li>Conception d'outils numériques pour la qualité</li>", '<li>Design of digital tools for quality</li>'),
     ('<span class="k">Ensemble</span>', '<span class="k">Assembly</span>'),
     ('<h2>Qyklo, le système qualité complet</h2>', '<h2>Qyklo, the complete quality system</h2>'),
     ("Après les mini-apps, l'outil complet&nbsp;: Qyklo pilote tout le système de management de la qualité, ISO&nbsp;9001 et ISO&nbsp;13485, à la place des fichiers Excel dispersés. Il reprend le cœur des mini-apps et y ajoute tout le reste, organisé selon le cycle PDCA.",
@@ -78,7 +64,6 @@ ACCUEIL = [
      "Each application replaces a task I used to do by hand. Each one fits in a single file, opens in the browser and saves its data to a shared folder: nothing to install, no server."),
     ('alt="SPC Supervision : indicateurs de capabilité et carte de contrôle"', 'alt="SPC Supervision: capability indicators and control chart"'),
     ('<p>Cartes de contrôle et capabilités à partir des mesures machine, écran opérateur avec arrêt production.</p>', '<p>Control charts and capability from machine measurements, operator screen with line stop.</p>'),
-    ('<span>Rapport de capabilité <b>1–2 h → quelques clics</b></span>', '<span>Capability report <b>1–2 h → a few clicks</b></span>'),
     ("<span class=\"go\">Lire l'étude</span>", '<span class="go">Read the case study</span>'),
     ('alt="SCAR : tableau de bord des réclamations fournisseurs"', 'alt="SCAR: supplier complaints dashboard"'),
     ('<span class="k">Fournisseurs</span>', '<span class="k">Suppliers</span>'),
@@ -106,6 +91,8 @@ ACCUEIL = [
 ]
 
 QYKLO = [
+    ('assets/og/fr-qyklo.png', 'assets/og/en-qyklo.png'),
+    ('<meta property="og:url" content="https://ykaabar.github.io/qyklo/">', '<meta property="og:url" content="https://ykaabar.github.io/en/qyklo/">'),
     ('<html lang="fr" data-charte="qyklo" data-polices="qyklo">', '<html lang="en" data-charte="qyklo" data-polices="qyklo">'),
     ('content="Qyklo : application de pilotage du système de management de la qualité, ISO 9001 et ISO 13485. Actions, réclamations et 8D, audits, fournisseurs, KPI, atelier connecté."',
      'content="Qyklo: quality management system software, ISO 9001 and ISO 13485. Actions, complaints and 8D, audits, suppliers, KPIs, connected shop floor."'),
@@ -199,11 +186,27 @@ QYKLO = [
     ('<span class="val">Démo publique avec données fictives</span>', '<span class="val">Public demo with fictitious data</span>'),
 ]
 
+import re
+def sections(s, src):
+    """Remplace les sections longues par leur version anglaise (scripts/i18n/<id>.en.html).
+    La copie <id>.fr.html doit être identique à la section française : sinon la version
+    anglaise est en retard, le script s'arrête."""
+    for fr in sorted((racine / 'scripts/i18n').glob('*.fr.html')):
+        sid = fr.name.split('.')[0]
+        m = re.search(r'  <section id="%s"[^>]*>.*?\n  </section>' % sid, s, re.S)
+        if not m:
+            continue
+        if m.group(0) != fr.read_text(encoding='utf-8'):
+            sys.exit(f'{src} : la section « {sid} » a changé en français. Mettre à jour scripts/i18n/{sid}.en.html, puis recopier la section dans {sid}.fr.html.')
+        s = s.replace(m.group(0), (racine / f'scripts/i18n/{sid}.en.html').read_text(encoding='utf-8'))
+    return s
+
 def traduire(src, dst, table):
     s = (racine / src).read_text(encoding='utf-8')
     manquants = [a for a, _ in COMMUN + table if a not in s and a not in ('class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>', 'class="lang" href="../en/qyklo/" hreflang="en" lang="en" aria-label="English version">EN</a>')]
     if manquants:
         sys.exit(f'{src} : phrases introuvables, mettre à jour la table :\n  ' + '\n  '.join(m[:90] for m in manquants))
+    s = sections(s, src)
     for a, b in table + COMMUN:
         s = s.replace(a, b)
     (racine / dst).parent.mkdir(parents=True, exist_ok=True)

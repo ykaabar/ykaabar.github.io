@@ -495,3 +495,61 @@ a.method { color: inherit; text-decoration: none; transition: border-color var(-
   .nav .btn.in .ico { display: block; }
   .nav .btn.in .lbl { display: none; }
 }
+
+/* ---------- Frise d'expérience ---------- */
+.frise { list-style: none; margin: 0 0 var(--s-8); padding: 0 0 0 var(--s-8); position: relative; display: grid; gap: var(--s-5); }
+.frise::before { content: ''; position: absolute; left: 15px; top: 16px; bottom: 16px; border-left: 1px dashed var(--ink-2); opacity: .5; }
+.poste { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s-5) var(--s-6); }
+.poste > .rep { position: absolute; left: calc(var(--s-8) * -1); top: var(--s-5); }
+.poste .quand { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-1) var(--s-4); font-size: var(--t-2); color: var(--muted); }
+.poste .quand .mono { font: 500 var(--t-2) var(--mono); color: var(--accent-text); }
+.poste h3 { margin: var(--s-2) 0 var(--s-1); font-size: var(--t-h3); }
+.poste .ou { color: var(--muted); font-size: var(--t-2); margin-bottom: var(--s-4); }
+.poste .bullets { gap: var(--s-2); }
+.poste .bullets li { font-size: var(--t-2); line-height: 1.6; }
+.poste .bullets b, .poste .ou + p { color: var(--ink); }
+.competences { margin: 0; display: grid; gap: var(--s-3); }
+.competences dt { font: 500 var(--t-meta)/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+.competences dd { margin: 0 0 var(--s-1); font-size: var(--t-2); color: var(--ink-2); }
+.loisirs { color: var(--ink-2); font-size: var(--t-2); }
+@media (max-width: 767.98px) {
+  .frise { padding-left: var(--s-7); }
+  .frise::before { left: 15px; }
+  .poste { padding: var(--s-4); }
+  .poste > .rep { left: calc(var(--s-7) * -1); }
+}
+
+/* ---------- Calculateurs ---------- */
+.outils { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); align-items: start; }
+.outil h3 { margin-bottom: var(--s-2); }
+.outil .aide { color: var(--muted); font-size: var(--t-2); margin-bottom: var(--s-4); }
+.cloche { width: 100%; height: auto; margin-bottom: var(--s-4); }
+.cloche text { font: 500 12px var(--mono); fill: var(--muted); }
+.reglage { margin-bottom: var(--s-4); }
+.reglage label, .champ label { display: flex; justify-content: space-between; gap: var(--s-2); font-size: var(--t-2); font-weight: 500; color: var(--ink); margin-bottom: var(--s-2); }
+.reglage output { color: var(--accent-text); }
+input[type="range"] { width: 100%; height: var(--hit); margin: 0; accent-color: var(--accent); cursor: pointer; background: transparent; }
+.champs { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--s-3); margin-bottom: var(--s-4); }
+.champ input, .champ select { width: 100%; min-height: var(--hit); padding: 0 var(--s-3); border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--surface); color: var(--ink); font: 500 var(--t-1) var(--mono); }
+.champ input:focus-visible, .champ select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.resultat { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--r-sm); overflow: hidden; }
+.resultat > div { padding: var(--s-3) var(--s-4); border-left: 1px solid var(--line-2); }
+.resultat > div:first-child { border-left: 0; }
+.resultat span { display: block; font-size: var(--t-meta); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-family: var(--mono); }
+.resultat b { font-size: var(--t-h3); }
+.resultat .verdict { grid-column: 1 / -1; padding: var(--s-3) var(--s-4); border-top: 1px solid var(--line-2); font-size: var(--t-2); color: var(--ink-2); }
+.verdict .badge { display: inline-block; margin-right: var(--s-2); padding: 2px var(--s-2); border-radius: 4px; color: #fff; font-weight: 600; font-size: var(--t-meta); text-transform: uppercase; letter-spacing: .04em; }
+.badge.ok { background: var(--ok); } .badge.warn { background: var(--warn); } .badge.bad { background: var(--danger); }
+.cloche .zone { fill: var(--accent); opacity: .12; }
+.cloche .courbe { fill: none; stroke: var(--accent); stroke-width: 2; }
+.cloche .hors { fill: var(--danger); opacity: .55; }
+.cloche .tol { stroke: var(--danger); stroke-width: 1.5; }
+.cloche .nom { stroke: var(--faint); stroke-dasharray: 2 4; }
+@media (max-width: 767.98px) {
+  .outils { grid-template-columns: 1fr; }
+  .champs { grid-template-columns: 1fr 1fr; }
+  .champs .champ:first-child { grid-column: 1 / -1; }
+}
+.note-stats { margin-top: var(--s-3); font-size: var(--t-meta); color: var(--muted); }
+.poste a.go { min-height: var(--hit); }

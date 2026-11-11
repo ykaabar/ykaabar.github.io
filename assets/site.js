@@ -237,6 +237,87 @@
     }), { rootMargin: '-45% 0px -45% 0px' }).observe(zone);
   }
 
+
+  /* ---------- Calculateur de capabilité ----------
+     Cp = (USL − LSL) / 6σ ; Cpk = min(USL − µ, µ − LSL) / 3σ ;
+     part hors tolérance = Φ((LSL − µ)/σ) + 1 − Φ((USL − µ)/σ). */
+  const fx = (v, d) => { const s = v.toFixed(d); return EN ? s : s.replace('.', ','); };
+  const phi = z => { /* loi normale cumulée (approximation d'Abramowitz et Stegun 26.2.17) */
+    const t = 1 / (1 + .2316419 * Math.abs(z)), d = .3989423 * Math.exp(-z * z / 2);
+    const p = d * t * (.3193815 + t * (-.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+    return z > 0 ? 1 - p : p;
+  };
+  const cpk = document.getElementById('calc-cpk');
+  if (cpk) {
+    const LSL = 9.9, USL = 10.1, NOM = 10, X0 = 9.84, X1 = 10.16, W = 320, H = 140, B = 112;
+    const m = cpk.querySelector('#cpk-m'), sd = cpk.querySelector('#cpk-s'), svg = cpk.querySelector('svg');
+    const px = v => (v - X0) / (X1 - X0) * W;
+    const maj = () => {
+      const mu = +m.value, s = +sd.value;
+      const cp = (USL - LSL) / (6 * s), k = Math.min(USL - mu, mu - LSL) / (3 * s);
+      const hors = phi((LSL - mu) / s) + 1 - phi((USL - mu) / s), ppm = Math.round(hors * 1e6);
+      cpk.querySelector('#cpk-m-v').textContent = fx(mu, 3) + ' mm';
+      cpk.querySelector('#cpk-s-v').textContent = fx(s, 3) + ' mm';
+      cpk.querySelector('#cpk-cp').textContent = fx(cp, 2);
+      cpk.querySelector('#cpk-cpk').textContent = fx(k, 2);
+      cpk.querySelector('#cpk-ppm').textContent = ppm >= 1e5 ? fx(hors * 100, 1) + ' %' : ppm.toLocaleString(EN ? 'en' : 'fr-CH') + ' ppm';
+      const [cl, lab, txt] = k >= 1.33 ? ['ok', t('Capable', 'Capable'), t('Le procédé tient la tolérance avec de la marge (Cpk ≥ 1,33).', 'The process holds the tolerance with margin (Cpk ≥ 1.33).')]
+        : k >= 1 ? ['warn', t('À surveiller', 'Watch'), t('Le procédé tient la tolérance, sans marge : à surveiller (1 ≤ Cpk < 1,33).', 'The process holds the tolerance with no margin (1 ≤ Cpk < 1.33).')]
+        : ['bad', t('Non capable', 'Not capable'), t('Le procédé produit des pièces hors tolérance (Cpk < 1) : centrer ou réduire la dispersion.', 'The process makes out-of-tolerance parts (Cpk < 1): centre it or reduce the spread.')];
+      cpk.querySelector('#cpk-verdict').innerHTML = `<span class="badge ${cl}">${lab}</span>${txt}`;
+      /* courbe en cloche */
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      /* hauteur du pic constante : la largeur de la cloche montre la dispersion */
+      const pts = [], y = v => B - Math.exp(-((v - mu) ** 2) / (2 * s * s)) * (B - 12);
+      for (let i = 0; i <= 160; i++) { const v = X0 + (X1 - X0) * i / 160; pts.push([px(v), y(v)]); }
+      const d = 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L');
+      el('rect', { x: px(LSL), y: 4, width: px(USL) - px(LSL), height: B - 4, class: 'zone' }, svg);
+      const horsZone = (a, b) => { const q = pts.filter(p => p[0] >= px(a) && p[0] <= px(b)); if (q.length > 1) el('path', { d: `M${q[0][0]} ${B} L` + q.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + ` L${q[q.length - 1][0]} ${B} Z`, class: 'hors' }, svg); };
+      horsZone(X0, LSL); horsZone(USL, X1);
+      el('path', { d, class: 'courbe' }, svg);
+      [[LSL, 'LSL'], [USL, 'USL']].forEach(([v, l]) => { el('line', { x1: px(v), x2: px(v), y1: 4, y2: B, class: 'tol' }, svg); el('text', { x: px(v), y: B + 18, 'text-anchor': 'middle' }, svg).textContent = l; });
+      el('line', { x1: px(NOM), x2: px(NOM), y1: 4, y2: B, class: 'nom' }, svg);
+      el('text', { x: px(NOM), y: B + 18, 'text-anchor': 'middle' }, svg).textContent = fx(NOM, 2);
+      el('line', { x1: 0, x2: W, y1: B, y2: B, style: 'stroke:var(--line)' }, svg);
+    };
+    m.addEventListener('input', maj); sd.addEventListener('input', maj); maj();
+  }
+
+  /* ---------- Plan d'échantillonnage ISO 2859-1 ----------
+     Tables reprises de l'application OQC (tableau I : lettre-code ; tableau II-A :
+     contrôle normal, échantillonnage simple ; flèches suivies jusqu'au premier plan). */
+  const aql = document.getElementById('calc-aql');
+  if (aql) {
+    const LETTRES = 'ABCDEFGHJKLMNPQR'.split(''), ECH = [2, 3, 5, 8, 13, 20, 32, 50, 80, 125, 200, 315, 500, 800, 1250, 2000];
+    const LOTS = [[2, 8, 'A', 'A', 'B'], [9, 15, 'A', 'B', 'C'], [16, 25, 'B', 'C', 'D'], [26, 50, 'C', 'D', 'E'], [51, 90, 'C', 'E', 'F'], [91, 150, 'D', 'F', 'G'],
+      [151, 280, 'E', 'G', 'H'], [281, 500, 'F', 'H', 'J'], [501, 1200, 'G', 'J', 'K'], [1201, 3200, 'H', 'K', 'L'], [3201, 10000, 'J', 'L', 'M'],
+      [10001, 35000, 'K', 'M', 'N'], [35001, 150000, 'L', 'N', 'P'], [150001, 500000, 'M', 'P', 'Q'], [500001, Infinity, 'N', 'Q', 'R']];
+    const NQA = ['0.010', '0.015', '0.025', '0.040', '0.065', '0.10', '0.15', '0.25', '0.40', '0.65', '1.0', '1.5', '2.5', '4.0', '6.5', '10'];
+    const DIAG = { 0: [0, 1], 3: [1, 2], 4: [2, 3], 5: [3, 4], 6: [5, 6], 7: [7, 8], 8: [10, 11], 9: [14, 15], 10: [21, 22] };
+    const cell = (i, j) => { const d = i + j - 14; return DIAG[d] ? { ac: DIAG[d][0], re: DIAG[d][1] } : (d === 1 || d > 10) ? 'up' : 'down'; };
+    const plan = (lot, niv, a) => {
+      const j = NQA.indexOf(a), r = LOTS.find(x => lot >= x[0] && lot <= x[1]); if (j < 0 || !r) return null;
+      const start = LETTRES.indexOf(r[{ I: 2, II: 3, III: 4 }[niv]]); let i = start, c = cell(i, j), g = 0;
+      while (typeof c === 'string' && g++ < 20) { i += c === 'up' ? -1 : 1; if (i < 0) { i = start; while (typeof cell(i, j) === 'string' && i < 15) i++; c = cell(i, j); break; } if (i > 15) { i = 15; c = { ac: 1, re: 2 }; break; } c = cell(i, j); }
+      if (typeof c === 'string') return null;
+      let n = ECH[i], full = false; if (n >= lot) { n = lot; full = true; }
+      return { l: LETTRES[i], n, ac: c.ac, re: c.re, full };
+    };
+    const sel = aql.querySelector('#aql-nqa');
+    NQA.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = EN ? a : a.replace('.', ','); if (a === '0.65') o.selected = true; sel.appendChild(o); });
+    const maj = () => {
+      const lot = Math.floor(+aql.querySelector('#aql-lot').value), p = lot >= 2 ? plan(lot, aql.querySelector('#aql-niv').value, sel.value) : null;
+      const out = (id, v) => { aql.querySelector(id).textContent = v; };
+      if (!p) { out('#aql-l', '–'); out('#aql-n', '–'); out('#aql-acre', '–'); aql.querySelector('#aql-phrase').textContent = t('Saisissez une taille de lot d\'au moins 2 pièces.', 'Enter a lot size of at least 2 parts.'); return; }
+      out('#aql-l', p.l); out('#aql-n', p.n.toLocaleString(EN ? 'en' : 'fr-CH')); out('#aql-acre', `${p.ac} / ${p.re}`);
+      const pieces = n => n > 1 ? t('pièces', 'parts') : t('pièce', 'part');
+      aql.querySelector('#aql-phrase').textContent = (p.full ? t('Contrôlez tout le lot. ', 'Inspect the whole lot. ') : t(`Prélevez ${p.n} ${pieces(p.n)}. `, `Sample ${p.n} ${pieces(p.n)}. `))
+        + (p.ac === 0 ? t('Acceptez le lot seulement sans aucun défaut ; refusez-le dès 1 défaut.', 'Accept the lot only with zero defects; reject it from 1 defect.')
+          : t(`Acceptez le lot jusqu'à ${p.ac} défaut${p.ac > 1 ? 's' : ''}, refusez-le à partir de ${p.re}.`, `Accept the lot with up to ${p.ac} defect${p.ac === 1 ? '' : 's'}, reject it from ${p.re}.`));
+    };
+    aql.addEventListener('input', maj); aql.addEventListener('change', maj); maj();
+  }
+
   const DESSINS = { qyklo: cycleQyklo, spc: carteSPC, scar: pipeline8D, oqc: echantillon, ecme: jauge, rr: barresRR };
   document.querySelectorAll('svg[data-chart]').forEach(svg => {
     const dessiner = DESSINS[svg.dataset.chart]; if (!dessiner) return;

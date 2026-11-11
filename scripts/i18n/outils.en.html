@@ -1,0 +1,55 @@
+  <section id="outils">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="k">Workshop</span>
+        <h2>Try it yourself</h2>
+        <p>Two everyday calculations of a quality engineer, live in the page.</p>
+      </div>
+      <div class="outils">
+        <form class="panel outil reveal" id="calc-cpk" aria-labelledby="cpk-t" onsubmit="return false">
+          <h3 id="cpk-t">Process capability</h3>
+          <p class="aide">Dimension 10.00 ± 0.10 mm. Move the process mean and spread.</p>
+          <svg class="cloche" viewBox="0 0 320 140" role="img" aria-labelledby="cpk-res"></svg>
+          <div class="reglage">
+            <label for="cpk-m">Mean <output id="cpk-m-v" for="cpk-m" class="mono"></output></label>
+            <input type="range" id="cpk-m" min="9.92" max="10.08" step="0.002" value="10.03">
+          </div>
+          <div class="reglage">
+            <label for="cpk-s">Standard deviation <output id="cpk-s-v" for="cpk-s" class="mono"></output></label>
+            <input type="range" id="cpk-s" min="0.006" max="0.05" step="0.001" value="0.022">
+          </div>
+          <div class="resultat" id="cpk-res" aria-live="polite">
+            <div><span>Cp</span><b id="cpk-cp" class="mono"></b></div>
+            <div><span>Cpk</span><b id="cpk-cpk" class="mono"></b></div>
+            <div><span>Out of tolerance</span><b id="cpk-ppm" class="mono"></b></div>
+            <p class="verdict" id="cpk-verdict"></p>
+          </div>
+        </form>
+
+        <form class="panel outil reveal" id="calc-aql" aria-labelledby="aql-t" onsubmit="return false">
+          <h3 id="aql-t">ISO 2859-1 sampling plan</h3>
+          <p class="aide">Normal inspection, single sampling. How many parts to sample, and when to reject the lot?</p>
+          <div class="champs">
+            <div class="champ">
+              <label for="aql-lot">Lot size</label>
+              <input type="number" id="aql-lot" inputmode="numeric" min="2" max="1000000" value="500">
+            </div>
+            <div class="champ">
+              <label for="aql-niv">Level</label>
+              <select id="aql-niv"><option value="I">I</option><option value="II" selected>II</option><option value="III">III</option></select>
+            </div>
+            <div class="champ">
+              <label for="aql-nqa">AQL (%)</label>
+              <select id="aql-nqa"></select>
+            </div>
+          </div>
+          <div class="resultat" id="aql-res" aria-live="polite">
+            <div><span>Code letter</span><b id="aql-l" class="mono"></b></div>
+            <div><span>Sample</span><b id="aql-n" class="mono"></b></div>
+            <div><span>Ac / Re</span><b id="aql-acre" class="mono"></b></div>
+            <p class="verdict" id="aql-phrase"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
