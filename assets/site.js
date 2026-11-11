@@ -318,6 +318,15 @@
     aql.addEventListener('input', maj); aql.addEventListener('change', maj); maj();
   }
 
+
+  /* Vidéo : lecture muette quand elle est à l'écran, pause sinon ; jamais automatique si « réduire les animations » */
+  document.querySelectorAll('video[data-auto]').forEach(v => {
+    if (calme || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause();
+    }), { threshold: .5 }).observe(v);
+  });
+
   const DESSINS = { qyklo: cycleQyklo, spc: carteSPC, scar: pipeline8D, oqc: echantillon, ecme: jauge, rr: barresRR };
   document.querySelectorAll('svg[data-chart]').forEach(svg => {
     const dessiner = DESSINS[svg.dataset.chart]; if (!dessiner) return;

@@ -97,7 +97,7 @@ QYKLO = [
     ('content="Qyklo : application de pilotage du système de management de la qualité, ISO 9001 et ISO 13485. Actions, réclamations et 8D, audits, fournisseurs, KPI, atelier connecté."',
      'content="Qyklo: quality management system software, ISO 9001 and ISO 13485. Actions, complaints and 8D, audits, suppliers, KPIs, connected shop floor."'),
     ('content="Qyklo · le cycle qualité, enfin visible"', 'content="Qyklo · the quality cycle, finally visible"'),
-    ('href="../assets/', 'href="../../assets/'), ('src="../assets/', 'src="../../assets/'),
+    ('href="../assets/', 'href="../../assets/'), ('src="../assets/', 'src="../../assets/'), ('poster="../assets/', 'poster="../../assets/'),
     ('>← Revenir à l\'accueil</a>', '>← Back to home</a>'),
     ('<span class="k">Système qualité · Qyklo</span>', '<span class="k">Quality system · Qyklo</span>'),
     ('<h1>Le cycle qualité, enfin visible</h1>', '<h1>The quality cycle, finally visible</h1>'),
@@ -193,7 +193,7 @@ def sections(s, src):
     anglaise est en retard, le script s'arrête."""
     for fr in sorted((racine / 'scripts/i18n').glob('*.fr.html')):
         sid = fr.name.split('.')[0]
-        m = re.search(r'  <section id="%s"[^>]*>.*?\n  </section>' % sid, s, re.S)
+        m = re.search(r'  <section[^>]*\bid="%s"[^>]*>.*?\n  </section>' % sid, s, re.S)
         if not m:
             continue
         if m.group(0) != fr.read_text(encoding='utf-8'):
