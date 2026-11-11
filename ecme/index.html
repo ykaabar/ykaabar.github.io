@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECME · Yassine Kaabar</title>
+<meta name="description" content="Application ECME : registre des équipements de mesure, échéances d'étalonnage, planning et contrôles en retard.">
+<meta property="og:title" content="ECME · équipements de mesure">
+<meta property="og:image" content="https://yayak2a.github.io/assets/img/ecme-accueil.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141920'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='600' fill='white' text-anchor='middle'%3EYK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Yassine Kaabar, accueil"><span class="mark" aria-hidden="true">YK</span><span class="name">Yassine Kaabar</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="../#parcours">Parcours</a>
+      <a href="../#applications">Applications</a>
+      <a class="btn pri" href="https://www.linkedin.com/in/yassine-kaabar-b6230b159" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="app-hero">
+    <div class="wrap">
+      <a class="crumb" href="../#applications">← Revenir aux applications</a>
+      <div class="hero-grid">
+        <div>
+          <span class="k">Métrologie · ECME</span>
+          <h1>Un parc de mesure toujours prêt pour l'audit</h1>
+          <p class="lede">Chaque équipement de contrôle, de mesure et d'essai a sa fiche, son statut et sa prochaine échéance. Les retards se voient avant que l'auditeur ne les trouve.</p>
+          <p class="meta-line"><span>Étalonnage</span><span>Planning</span><span>Registre</span></p>
+        </div>
+        <div class="hero-art">
+          <svg class="chart" data-chart="ecme" role="img" aria-label="Un instrument est contrôlé : l'aiguille se stabilise dans la zone de tolérance, l'équipement est déclaré conforme."></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="k">Le problème</span>
+        <h2>Avant : un fichier Excel qui ne disait pas tout</h2>
+      </div>
+      <div class="compare">
+        <div class="panel before reveal">
+          <h3>Avant</h3>
+          <ol class="steps">
+            <li>Tout le parc dans un fichier Excel</li>
+            <li>Des équipements disparus encore listés comme actifs</li>
+            <li>Des retards d'étalonnage qui n'en étaient pas</li>
+          </ol>
+          <div class="big-num"><div><b>18</b><span>équipements actifs à tort dans l'ancien fichier</span></div></div>
+        </div>
+        <div class="panel after reveal">
+          <h3>Maintenant</h3>
+          <ol class="steps">
+            <li>Chaque équipement a un statut clair : suivi, hors suivi, réformé</li>
+            <li>Échéances et retards recalculés chaque jour</li>
+            <li>Planning des contrôles internes et des envois externes</li>
+            <li>Registre exportable pour le présenter tel quel</li>
+          </ol>
+          <div class="big-num"><div><b>Parc à jour</b><span>et présentable en audit</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flush">
+    <div class="wrap">
+      <div class="impact reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h6v6"/></svg>
+        <div>
+          <span class="k">Sur le terrain</span>
+          <p>La mise en place de l'outil a révélé 18 équipements encore actifs alors qu'ils n'existaient plus. Dans l'ancien fichier, ils apparaissaient en retard d'étalonnage : l'application a mis l'écart en évidence avant qu'un auditeur ne le fasse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="k">L'application</span>
+        <h2>Le parc, les échéances, les décisions</h2>
+      </div>
+      <div class="feats">
+        <div class="panel reveal">
+          <h3>Registre et échéances</h3>
+          <p>L'état du parc en un écran.</p>
+          <ul class="bullets">
+            <li>Fiche par équipement : localisation, périodicité, étalonnage interne ou externe</li>
+            <li>Contrôles en retard et échéances à 30 jours</li>
+            <li>Taux de conformité du parc</li>
+            <li>Équipements hors suivi et réformés séparés des actifs</li>
+            <li>Import depuis Excel, export du registre</li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <h3>Contrôles et planning</h3>
+          <p>De la saisie du résultat à la décision.</p>
+          <ul class="bullets">
+            <li>Saisie du contrôle et calcul de la prochaine échéance</li>
+            <li>Résultats NOK : équipement bloqué, décision à prendre</li>
+            <li>Planning sur 3 mois</li>
+            <li>Envois regroupés par laboratoire externe</li>
+            <li>Étude Gage R&amp;R lancée depuis la fiche</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="k">Captures</span>
+        <h2>L'application en images</h2>
+        <p>Données d'exemple fictives.</p>
+      </div>
+      <div class="gallery">
+        <figure class="wide reveal">
+          <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="../assets/img/ecme-accueil.webp" alt="Tableau de bord ECME : équipements suivis, retards et échéances" loading="lazy" width="1600" height="1000"></div>
+          <figcaption><b>Tableau de bord.</b> Conformité du parc, retards et échéances à venir.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="../assets/img/ecme-parc.webp" alt="Liste des équipements du parc avec échéances" loading="lazy" width="1600" height="1000"></div>
+          <figcaption><b>Parc.</b> Tous les équipements, filtrables par localisation et statut.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="../assets/img/ecme-planning.webp" alt="Planning des contrôles à venir sur trois mois" loading="lazy" width="1600" height="1000"></div>
+          <figcaption><b>Planning.</b> Les contrôles des trois prochains mois et les envois externes.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="k">Sous le capot</span>
+        <h2>Simple à déployer, solide à l'usage</h2>
+      </div>
+      <div class="methods">
+        <div class="method reveal"><b>Un fichier HTML</b><span>S'ouvre dans Edge ou Chrome. Rien à installer, aucun serveur.</span></div>
+        <div class="method reveal"><b>Dossier partagé</b><span>Un seul registre, lu par tous les postes.</span></div>
+        <div class="method reveal"><b>Fusion des modifications</b><span>Deux personnes peuvent mettre le parc à jour en même temps.</span></div>
+        <div class="method reveal"><b>Sauvegarde quotidienne</b><span>Une copie du registre est gardée chaque jour.</span></div>
+        <div class="method reveal"><b>Lié au Gage R&amp;R</b><span>L'étude R&amp;R s'ouvre avec l'équipement déjà renseigné.</span></div>
+        <div class="method reveal"><b>Socle commun</b><span>Même thème et même stockage que les autres applications.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <nav class="pager" aria-label="Autres applications">
+        <a href="../oqc/"><span>← Précédente</span><b>OQC</b></a>
+        <a class="next" href="../gage-rr/"><span>Suivante →</span><b>Gage R&amp;R</b></a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="cartouche">
+  <div class="wrap">
+    <div class="cart">
+      <div class="full"><span class="lab">Titre</span><span class="val">ECME · équipements de mesure</span></div>
+      <div><span class="lab">Dessiné par</span><span class="val">Yassine Kaabar</span></div>
+      <div><span class="lab">Date</span><span class="val">11.2026</span></div>
+      <div class="full"><span class="lab">Remarque</span><span class="val">Code des applications disponible sur demande</span></div>
+      <div><span class="lab">Feuille</span><span class="val">5 / 6 · Rév. A</span></div>
+      <div><span class="lab">Contact</span><nav aria-label="Liens"><a href="https://www.linkedin.com/in/yassine-kaabar-b6230b159" rel="noopener">LinkedIn</a><a href="https://github.com/yayak2a" rel="noopener">GitHub</a></nav></div>
+    </div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
