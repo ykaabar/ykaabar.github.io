@@ -615,3 +615,9 @@ input[type="range"] { width: 100%; height: var(--hit); margin: 0; accent-color: 
 }
 .ensemble .rep-0.rappel { top: -40px; right: -28px; --la: 135deg; --ll: 38px; }
 @media (max-width: 767.98px) { .ensemble .rep-0.rappel { top: -40px; right: var(--s-2); --la: 90deg; --ll: 30px; } }
+
+/* Marges : aucune bulle ni cote ne dépasse les marges gauche et droite de la page */
+.ensemble .rep-0.rappel { top: -48px; right: 0; --la: 90deg; --ll: 26px; }
+@media (max-width: 767.98px) { .ensemble .rep-0.rappel { top: -48px; right: 0; --la: 90deg; --ll: 26px; } }
+.portrait { margin-right: calc(var(--s-6) + var(--s-4)); }
+@media (max-width: 767.98px) { .hero-grid .portrait { margin-right: var(--s-7); } }
