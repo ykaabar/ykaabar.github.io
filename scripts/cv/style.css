@@ -42,3 +42,13 @@ footer span { display: block; font: 500 6.6pt "PlexMono", monospace; letter-spac
 /* Un titre de section ne reste jamais seul en bas de page : il suit son contenu */
 h2 { break-after: avoid-page; page-break-after: avoid; }
 .form, dl, .profil { break-inside: avoid-page; }
+
+/* Photo (CV français uniquement : en Suisse et en France, c'est l'usage) */
+header.avec-photo { grid-template-columns: 24mm 1fr auto; align-items: center; }
+header .photo { width: 24mm; height: 30mm; object-fit: cover; border: .6pt solid var(--ink); padding: .8mm; background: #fff; }
+header.avec-photo .titre { font-size: 9.6pt; }
+header.avec-photo .cote { width: max-content; }
+header.avec-photo .cote::before, header.avec-photo .cote::after { flex: 0 0 12mm; }
+header.avec-photo .coord { font-size: 8.2pt; }
+header.avec-photo { grid-template-columns: 24mm 1fr 68mm; }
+header.avec-photo .coord a { font-size: 7.6pt; }

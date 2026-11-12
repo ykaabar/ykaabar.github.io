@@ -22,6 +22,8 @@ COMMUN = [
 ]
 
 ACCUEIL = [
+    ('alt="Portrait de Yassine Kaabar"', 'alt="Portrait of Yassine Kaabar"'),
+    ('<figcaption class="cote-v" aria-hidden="true">Ingénieur Qualité</figcaption>', '<figcaption class="cote-v" aria-hidden="true">Quality Engineer</figcaption>'),
     ('content="Ingénieur Qualité, plus de 5 ans en électronique de haute précision (ISO 9001, ISO 13485). Qualité clients et fournisseurs, lancements produits, SPC. Applications web pour la qualité et Qyklo."',
      'content="Quality Engineer, over 5 years in high-precision electronics (ISO 9001, ISO 13485). Customer and supplier quality, product launches, SPC. Web applications for quality, and Qyklo."'),
     ('content="Plus de 5 ans en qualité industrielle. Rendement porté de 89 % à 98 % par la SPC, zéro réclamation client en 3 ans sur les lancements."',
