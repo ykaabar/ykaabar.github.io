@@ -13,8 +13,8 @@ const url = f => 'file://' + path.join(racine, f);
 
 /* Une ligne par image : [fichier, sur-titre, titre, sous-titre, illustration, charte] */
 const OG = [
-  ['fr-accueil', 'Ingénieur Qualité', 'Yassine Kaabar', 'Qualité clients et fournisseurs · lancements produits · SPC', 'spc', ''],
-  ['en-accueil', 'Quality Engineer', 'Yassine Kaabar', 'Customer and supplier quality · product launches · SPC', 'spc', ''],
+  ['fr-accueil', 'Ingénieur Qualité', 'Yassine Kaabar', 'Résolution de problèmes · amélioration continue · zéro défaut', 'spc', ''],
+  ['en-accueil', 'Quality Engineer', 'Yassine Kaabar', 'Problem solving · continuous improvement · zero defect', 'spc', ''],
   ['fr-qyklo', 'Système qualité · Qyklo', 'Le cycle qualité, enfin visible', 'ISO 9001 · ISO 13485 · atelier connecté', 'q', 'qyklo'],
   ['en-qyklo', 'Quality system · Qyklo', 'The quality cycle, finally visible', 'ISO 9001 · ISO 13485 · connected shop floor', 'q', 'qyklo'],
   ['fr-spc', 'Production · SPC', 'Voir la dérive avant le client', 'Rendement porté de 89 % à 98 %', 'spc', ''],

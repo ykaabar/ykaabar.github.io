@@ -621,3 +621,17 @@ input[type="range"] { width: 100%; height: var(--hit); margin: 0; accent-color: 
 @media (max-width: 767.98px) { .ensemble .rep-0.rappel { top: -48px; right: 0; --la: 90deg; --ll: 26px; } }
 .portrait { margin-right: calc(var(--s-6) + var(--s-4)); }
 @media (max-width: 767.98px) { .hero-grid .portrait { margin-right: var(--s-7); } }
+
+/* Accroche sous le nom */
+.accroche { margin-top: var(--s-4); font: 500 var(--t-1)/1.5 var(--font); color: var(--ink); }
+.cote-box + .accroche + .lede { margin-top: var(--s-4); }
+/* Cinq chiffres clés : les cartes passent à la ligne d'elles-mêmes quand la place manque
+   (filets dessinés par l'espace de 1 px entre cartes, sur le fond de la bande) */
+.figures.cinq { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line-2); }
+.figures.cinq .figure { flex: 1 1 168px; border: 0 !important; background: var(--surface); }
+.figures.cinq .figure b { font-size: var(--t-h3-lg); }
+.poste .liens { display: flex; gap: var(--s-5); flex-wrap: wrap; }
+.ensemble .perso { margin-top: var(--s-4); font-size: var(--t-2); color: var(--muted); }
+.ensemble .perso a { display: inline-flex; align-items: center; min-height: var(--hit); }
+.app-hero .perso { margin-top: var(--s-3); font-size: var(--t-2); color: var(--muted); }
+.app-hero .perso a { display: inline-flex; align-items: center; min-height: var(--hit); }
