@@ -420,9 +420,6 @@ function page(fr, i, lang) {
 <link rel="alternate" hreflang="en" href="${SITE}/en/${p.slug}/">
 <link rel="alternate" hreflang="x-default" href="${SITE}/${p.slug}/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141920'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='600' fill='white' text-anchor='middle'%3EYK%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${R}assets/site.css">
 </head>
 <body>

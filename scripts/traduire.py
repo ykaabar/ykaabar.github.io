@@ -22,6 +22,9 @@ COMMUN = [
 ]
 
 ACCUEIL = [
+    ("Plus de 5 ans dans l'électronique de haute précision, certifiée ISO&nbsp;9001 et ISO&nbsp;13485. Je conçois aussi mes propres outils qualité.",
+     "Over 5 years in high-precision electronics, certified to ISO&nbsp;9001 and ISO&nbsp;13485. I also design my own quality tools."),
+    ('<b>13</b><span>nouveaux produits industrialisés (APQP)</span>', '<b>13</b><span>new products industrialised (APQP)</span>'),
     ('content="Ingénieur Qualité, plus de 5 ans en électronique de haute précision (ISO 9001, ISO 13485). Résolution de problèmes, amélioration continue, zéro défaut. Applications web pour la qualité et Qyklo."',
      'content="Quality Engineer, over 5 years in high-precision electronics (ISO 9001, ISO 13485). Problem solving, continuous improvement, zero defect. Web applications for quality, and Qyklo."'),
     ('content="Plus de 5 ans en qualité industrielle. Rebut au fraisage de 17,3 % à 0 %, rendement de 89 % à 98 %, 13 nouveaux produits industrialisés."',
@@ -30,14 +33,11 @@ ACCUEIL = [
     ('alt="Portrait de Yassine Kaabar, ingénieur qualité"', 'alt="Portrait of Yassine Kaabar, quality engineer"'),
     ('<b>17,3 → 0 %</b><span>de taux de rebut au fraisage en 7 mois</span>', '<b>17.3 → 0%</b><span>scrap rate in milling within 7 months</span>'),
     ('<b>89 → 98 %</b><span>de rendement sur un produit Chip-on-Board complexe</span>', '<b>89 → 98%</b><span>yield on a complex Chip-on-Board product</span>'),
-    ('<b>13</b><span>nouveaux produits industrialisés (APQP) ; 4 des 6 produits à volume significatif sans aucune réclamation client en 4 ans</span>', '<b>13</b><span>new products industrialised (APQP); 4 of the 6 high-volume products with zero customer complaints in 4 years</span>'),
     ('<b>−30 %</b><span>de réclamations fournisseurs en 3 ans (40 fournisseurs)</span>', '<b>−30%</b><span>supplier complaints over 3 years (40 suppliers)</span>'),
     ("<b>−50 %</b><span>de temps de traitement des réclamations grâce à l'automatisation</span>", '<b>−50%</b><span>complaint handling time through automation</span>'),
     ('<p class="perso">Projet personnel, développé sur mon temps libre, sans aucun lien avec mon employeur · ', '<p class="perso">Personal project, developed in my free time, with no connection to my employer · '),
     ('<figcaption class="cote-v" aria-hidden="true">Ingénieur Qualité</figcaption>', '<figcaption class="cote-v" aria-hidden="true">Quality Engineer</figcaption>'),
     ('aria-hidden="true">5+ ans · ISO 13485</div>', 'aria-hidden="true">5+ years · ISO 13485</div>'),
-    ("Plus de 5 ans en qualité industrielle dans l'électronique de haute précision, certifiée ISO&nbsp;9001 et ISO&nbsp;13485&nbsp;: qualité clients et fournisseurs, lancements de nouveaux produits, amélioration des procédés par la donnée. Je conçois aussi mes propres outils qualité.",
-     "Over 5 years in industrial quality in high-precision electronics, certified to ISO&nbsp;9001 and ISO&nbsp;13485: customer and supplier quality, new product launches, data-driven process improvement. I also design my own quality tools."),
     ('Yassine_Kaabar_CV.pdf" download>', 'Yassine_Kaabar_CV_EN.pdf" download>'),
     ('              Télécharger mon CV</a>', '              Download my CV</a>'),
     ('<span>Rendement <b>89 → 98 %</b></span>', '<span>Yield <b>89 → 98 %</b></span>'),
@@ -49,7 +49,6 @@ ACCUEIL = [
     ('href="assets/', 'href="../assets/'), ('src="assets/', 'src="../assets/'), ('srcset="assets/', 'srcset="../assets/'),
     ('href="./" aria-label', 'href="./" aria-label'),
     ('>Découvrir mes applications</a>', '>Explore my applications</a>'),
-    ('Voir mon profil LinkedIn</a>', 'View my LinkedIn profile</a>'),
     ('<span class="k">Ensemble</span>', '<span class="k">Assembly</span>'),
     ('<h2>Qyklo, le système qualité complet</h2>', '<h2>Qyklo, the complete quality system</h2>'),
     ("Après les mini-apps, l'outil complet&nbsp;: Qyklo pilote tout le système de management de la qualité, ISO&nbsp;9001 et ISO&nbsp;13485, à la place des fichiers Excel dispersés. Il reprend le cœur des mini-apps et y ajoute tout le reste, organisé selon le cycle PDCA.",

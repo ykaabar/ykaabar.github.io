@@ -67,13 +67,17 @@ function dessin(type) {
     ${v.map((val, i) => `<circle cx="${x(i)}" cy="${y(val)}" r="${i === v.length - 1 ? 8 : 5}" fill="${i === v.length - 1 ? L : '#fff'}" stroke="${i === v.length - 1 ? L : A}" stroke-width="3"/>`).join('')}</svg>`;
 }
 
+/* Polices locales (les mêmes que le site), sans animation ni autre style du site */
+const POLICES = [['Space Grotesk', 'space-grotesk', [500, 600]], ['JetBrains Mono', 'jetbrains-mono', [500, 600]]]
+  .flatMap(([fam, f, ws]) => ws.map(w => `@font-face{font-family:"${fam}";font-weight:${w};src:url("${url(`assets/fonts/${f}-latin-${w}-normal.woff2`)}")}`)).join('');
+
 function og([fichier, kicker, titre, sous, type, charte]) {
   const q = charte === 'qyklo';
   const C = q ? { bg: '#f5f7f8', ink: '#12324a', acc: '#0b6e79', grid: 'rgba(18,50,74,.07)', grid2: 'rgba(18,50,74,.11)' }
               : { bg: '#f7f8fa', ink: '#141920', acc: '#0d58b4', grid: 'rgba(15,96,196,.07)', grid2: 'rgba(15,96,196,.12)' };
   const en = fichier.startsWith('en');
   return `<!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@500;600&display=block" rel="stylesheet">
+<style>${POLICES}</style>
 <style>
 @font-face { font-family: "Archivo"; src: url("${url('assets/qyklo/fonts/Archivo-Bold.woff2')}"); font-weight: 700; }
 html,body{margin:0;width:1200px;height:627px;overflow:hidden}
